@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.greengram.greengram4.dm.DmMapper">
+    <insert id="insDm" useGeneratedKeys="true" keyProperty="idm">
+        INSERT INTO t_dm(last_msg)
+        VALUES (NULL)
+    </insert>
+
+    <!-- t_dm_user-->
+    <insert id="insDmUser">
+        INSERT INTO t_dm_user
+        SET idm = #{idm}
+        , iuser = #{iuser}
+    </insert>
+
+
+    <insert id="insDmMsg">
+        <selectKey resultType="int" keyProperty="seq" order="BEFORE">
+            SELECT ifnull(max(seq), 0)+1
+            from t_dm_msg
+            where idm=#{idm}
+        </selectKey>
+        insert into t_dm_msg
+        set idm = #{idm},
+        seq = #{seq},
+        iuser = #{loginedIuser},
+        msg = #{msg}
+    </insert>
+
+    <select id="selDmMsgAll">
+        select A.seq, A.msg, A.created_at AS createdAt, B.iuser AS writerIuser, B.pic AS writerPic
+        from t_dm_msg AS A
+        join t_user AS B
+        on A.iuser = B.iuser
+        where A.idm = #{idm}
+        order by A.seq desc
+        limit #{startIdx}, #{rowCount}
+    </select>
+
+    <select id="selDmAll">
+        SELECT A.idm, A.last_msg AS LastMsg, A.last_msg_at AS lastMsgAt,
+        D.nm AS otherPersonNm,
+        D.pic AS otherPersonPic, D.iuser AS otherPersonIuser
+        from t_dm AS A
+        join t_dm_user AS B
+        on A.idm = B.idm
+        join t_dm_user AS C
+        on B.idm = C.idm
+        join t_user AS D
+        on C.iuser = D.iuser
+        where B.iuser = #{loginedIuser} and
+        C.iuser != #{loginedIuser}
+        order by A.last_msg_at desc
+        <if test="rowCount > 0">
+            limit #{startIdx},#{rowCount}
+        </if>
+
+    </select>
+    <!-- a,b는 내가 소속된 idm의 값을 구하고 c는 내가 속해있는 방에 같이 있는 상대방을 알기 위한 것 c와 조인하면 나와 상대방까지
+    포함되어 나온다 그래서 c.iuser에 1이 아닌 것이라고 적는 것이다. D는 그 상대방의 정보를 알기 위한 것이다 -->
+
+    <delete id="delDmMsg">
+        delete
+        from t_dm_msg
+        where idm = #{idm} and seq = #{seq} and iuser = #{iuser}
+    </delete>
+
+    <insert id="insMakeDm" useGeneratedKeys="true" keyProperty="idm">
+        INSERT INTO t_dm
+        SET last_msg = NULL;
+    </insert>
+
+    <insert id="insMakeDmUser">
+        INSERT INTO t_dm_user
+        (idm, iuser)
+        values
+        (#{idm}, #{loginedIuser}),
+        (#{idm}, #{otherPersonIuser})
+    </insert>
+
+    <select id="selCheckDm">
+        select A.idm
+        from t_dm_user AS A
+        join t_dm_user AS B
+        on A.idm = B.idm
+        where A.iuser = #{loginedIuser} and B.iuser = #{otherPersonIuser}
+    </select>
+    <!-- 선생님이 한 방식
+    select idm
+    from t_dm_user
+    where iuser = #{loginedIuser}
+    or iuser = #{otherPersonIuser}
+    group by idm
+    having count(idm) = 2;
+    loginedIuser과 otherPersonIuser가 있는 방을 select하면 둘 이 포함된 방은 2개의 레코드가 뜬다
+    그걸 카운트 한 것
+    -->
+
+    <update id="upDmLastMsgAfterDelByLastMsg">
+        update t_dm A
+        join(
+            select idm, msg, created_at
+            from t_dm_msg
+        where idm = #{idm}
+        order by seq desc
+        limit 1
+        )B
+        on A.idm = B.idm
+        set A.last_msg = B.msg,
+        A.last_msg_at = B.created_at
+        where A.idm = #{idm}
+    </update>
+
+    <update id="updDmLastMsg">
+        UPDATE t_dm
+        SET last_msg = #{msg}
+        WHERE idm = #{idm}
+    </update>
+
+    <select id="selOtherPersonByLoginUser">
+        SELECT B.iuser, B.pic, B.firebase_token AS firebaseToken
+        FROM t_dm_user A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        WHERE A.idm = #{idm}
+        AND A.iuser != #{loginedIuser}
+    </select>
+</mapper>

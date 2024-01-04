@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.greengram.greengram4.user.UserMapper">
+    <insert id="userInsSignup" useGeneratedKeys="true" keyProperty="iuser">
+        INSERT INTO t_user
+        set uid = #{uid},
+        upw = #{upw},
+        nm = #{nm},
+        pic = #{pic}
+    </insert>
+
+    <delete id="delFollow">
+        delete from t_user_follow
+        where from_iuser = #{fromIuser} and to_iuser = #{toIuser}
+    </delete>
+
+    <insert id="insFollow">
+        insert into t_user_follow
+        set from_iuser = #{fromIuser},
+        to_iuser = #{toIuser}
+    </insert>
+
+    <select id="userInfoSel">
+        select A.nm, A.created_at AS createdAt, A.pic, count(distinct B.ifeed) AS feedCnt, count(C.ifeed) AS favCnt,
+        D.follower, D.following, D.followState
+        from t_user AS A
+        left join t_feed AS B
+        on A.iuser = B.iuser
+        left join t_favorite AS C
+        on B.ifeed = C.ifeed
+        inner join(
+        select #{targetIuser} AS iuser
+        , SUM(case when FROM_iuser = #{targetIuser} then 1 ELSE 0 END) AS following
+        , SUM(case when to_iuser = #{targetIuser} then 1 ELSE 0 END) AS follower
+        ,(
+        sum(if(from_iuser = #{loginedIuser} and to_iuser = #{targetIuser},1,0))
+        + sum(if(from_iuser = #{targetIuser} and to_iuser = #{loginedIuser},2,0))
+        ) AS followState
+        FROM t_user_follow
+        ) AS D
+        on A.iuser = D.iuser
+        where A.iuser = #{targetIuser}
+
+    </select>
+
+    <select id="selUser">
+        SELECT iuser, uid, upw, nm, pic, firebase_token AS firebaseToken, created_at AS createdAt, updated_at AS updatedAt
+        from t_user
+        <where>
+            <if test="uid != null and uid != ''">
+                uid = #{uid}
+            </if>
+            <if test="iuser>0">
+                and iuser = #{iuser}
+            </if>
+        </where><!-- 여러 경우에 따라 다 대응을 해준다
+        둘 다 true면 and를 사용하고 하나만 true일 땐 and를 없애주고
+        둘 다 false면 where을 아예 없애준다 -->
+    </select>
+
+    <update id="updUserFirebaseToken">
+        UPDATE t_user
+        SET firebase_token = #{firebaseToken}
+        WHERE iuser = #{iuser}
+    </update>
+
+    <update id="updUserPic">
+        UPDATE t_user
+        SET pic = #{pic}
+        WHERE iuser = #{iuser}
+    </update>
+
+</mapper>
