@@ -1,0 +1,48 @@
+package com.greengram.greengram4.security;
+
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+
+@Data
+@Builder
+public class MyUserDetails implements UserDetails {
+
+    private MyPrincipal myPrincipal;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {//권한이 무엇이 있느지 통과시키는 부분
+        return null;
+    }
+
+    @Override
+    public String getPassword() {//로그인 시 루틴을 탄다면 사용하는 메소드 직접 패스워드와 이름을 넣어주어야 함 지금은 현재 커스터마이징으로 사용 중이라 필요없음
+        return null;
+    }
+
+    @Override
+    public String getUsername() {//로그인 시 루틴을 탄다면 사용하는 메소드 직접 패스워드와 이름을 넣어주어야 함 지금은 현재 커스터마이징으로 사용 중이라 필요없음
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {//메소드 이름 그대로 account가 expired가 안되어있냐 물어보는 것
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {//활성화
+        return true;
+    }
+}

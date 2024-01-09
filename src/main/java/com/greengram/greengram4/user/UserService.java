@@ -1,21 +1,27 @@
 package com.greengram.greengram4.user;
 
+import com.greengram.greengram4.common.AppProperties;
 import com.greengram.greengram4.common.Const;
 import com.greengram.greengram4.common.ResVo;
+import com.greengram.greengram4.security.JwtTokenProvider;
+import com.greengram.greengram4.security.MyPrincipal;
 import com.greengram.greengram4.user.model.*;
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserMapper mapper;
-
+    private final PasswordEncoder passwordEncoder;//SecurityConfiguration에서 빈등록한 것
+    private final JwtTokenProvider jwtTokenProvider;
+    private final AppProperties appProperties;
     public ResVo postsignup(UserInsSignupDto dto){
         UserInsSignupPdto pdto= UserInsSignupPdto.builder()
                 .uid(dto.getUid())
-                .upw(BCrypt.hashpw(dto.getUpw(), BCrypt.gensalt()))
+                .upw(passwordEncoder.encode(dto.getUpw()))
                 .nm(dto.getNm())
                 .pic(dto.getPic())
                 .build();
@@ -36,17 +42,24 @@ public class UserService {
             return UserSigninVo.builder().result(Const.LOGIN_NO_UID).build();
         }
 
-        if(!BCrypt.checkpw(dto.getUpw(), entity.getUpw())){
+        if(!passwordEncoder.matches(dto.getUpw(), entity.getUpw())){
 
             return UserSigninVo.builder().result(Const.LOGIN_DIFF_UPW).build();
 
         }
+        MyPrincipal mp = new MyPrincipal(dto.getIuser());
+        String asscessToken= jwtTokenProvider.generateAccessToken(mp);
+        String refreshToken= jwtTokenProvider.generateRefreshToken(mp);
+
         return UserSigninVo.builder()
                 .result(Const.SUCCESS)
                 .iuser(entity.getIuser())
                 .nm(entity.getNm())
                 .pic(entity.getPic())
+                .accessToken(asscessToken)
+                .firebaseToken(entity.getFirebaseToken())
                 .build();
+
     }
 
     public ResVo toggleFollow(UserFollowDto dto){
