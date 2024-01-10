@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 )
 @SecurityScheme(
         type = SecuritySchemeType.HTTP
-        , name = "authorization"
+        , name = "authorization"//오타가 있으면 안됨
         , in = SecuritySchemeIn.HEADER
         , bearerFormat = "JWT"
         , scheme = "Bearer"

@@ -26,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @MockMvcConfig//MockMvcConfig 인터페이스 만들어서 사용한 애노테이션 한글 깨짐을 방지해줌 utf-8
+//@Import(CharEncodingConfig.class) 위와 같은 것
 @WebMvcTest({FeedController.class})//스프링 컨네이너 올려줌 빈 등록이 된다.
 class FeedControllerTest {
 

@@ -3,18 +3,25 @@ package com.greengram.greengram4.feed;
 import com.greengram.greengram4.common.Const;
 import com.greengram.greengram4.common.ResVo;
 import com.greengram.greengram4.feed.model.*;
+import com.greengram.greengram4.security.AuthenticationFacade;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FeedService {
     private final FeedMapper mapper;
     private final FeedCommentMapper comMapper;
+    private final AuthenticationFacade authenticationFacade;
 
     public ResVo postFeed(FeedInsDto dto){
+        dto.setIuser(authenticationFacade.getLoginUserPk());
+        log.info("dto : {}", dto);
 
         int result =  mapper.insFeed(dto);
 

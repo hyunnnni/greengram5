@@ -47,7 +47,7 @@ public class UserService {
             return UserSigninVo.builder().result(Const.LOGIN_DIFF_UPW).build();
 
         }
-        MyPrincipal mp = new MyPrincipal(dto.getIuser());
+        MyPrincipal mp = new MyPrincipal(entity.getIuser());
         String asscessToken= jwtTokenProvider.generateAccessToken(mp);
         String refreshToken= jwtTokenProvider.generateRefreshToken(mp);
 

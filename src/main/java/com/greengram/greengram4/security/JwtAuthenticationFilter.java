@@ -23,7 +23,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { //요청이 
         String token = jwtTokenProvider.resolveToken(request);//값이 넘어오면 로그인한 사용자 null이면 로그인한 사용자가 아니다
         log.info("JwtAuthentication-Token : {}", token);
 
-        if(token != null & jwtTokenProvider.isValidateToken(token)){
+        if(token != null && jwtTokenProvider.isValidateToken(token)){
             Authentication auth = jwtTokenProvider.getAuthentication(token);
             if(auth != null){
                 SecurityContextHolder.getContext().setAuthentication(auth);//로그인 사용자라면 값을 담아준다
