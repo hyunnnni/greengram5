@@ -5,6 +5,8 @@ import com.greengram.greengram4.user.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +34,20 @@ public class UserController {
     }
     @PostMapping("/signin")
     @Operation(summary = "인증", description = "아이디/ 비번을 활용한 인증처리")
-    public UserSigninVo postsingin(@RequestBody UserSigninDto dto){
-        return service.postsignin(dto);
+    public UserSigninVo postsingin(HttpServletRequest req
+            , HttpServletResponse res
+            , @RequestBody UserSigninDto dto){
+        return service.postsignin(req, res, dto);
+    }
+
+    @PostMapping("/signout")
+    public ResVo postSignout(HttpServletResponse res){
+        return service.signout(res);
+    }
+
+    @GetMapping("/refresh-token")
+    public UserSigninVo getRefreshToken(HttpServletRequest req){
+        return service.getRefreshToken(req);
     }
 
 

@@ -13,7 +13,8 @@ public class AuthenticationFacade {
     }
 
     public int getLoginUserPk() {
-        return getLoginUser()
+        MyUserDetails myUserDetails = getLoginUser();
+        return getLoginUser() == null ? 0 : myUserDetails
                 .getMyPrincipal()
                 .getIuser();
     }

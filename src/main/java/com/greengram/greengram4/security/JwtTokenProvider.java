@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greengram.greengram4.common.AppProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
@@ -27,7 +29,8 @@ public class JwtTokenProvider {//토큰을 만드는 작업
 
     private final ObjectMapper om;
     private final AppProperties appProperties;
-    private Key key;
+    //private Key key; 버전 업으로 사용하지 않음
+    private SecretKeySpec secretKeySpec;
 
     /*public JwtTokenProvider(@Value("${springboot.jwt.secret}")String secret
                 ,@Value("${springboot.jwt.header-scheme-name") String headerSchemeName
@@ -46,9 +49,10 @@ public class JwtTokenProvider {//토큰을 만드는 작업
     //스프링에 의해 객체화가 된 (빈등록) 것들만 가능
     public void init(){//키 만들어 주는 작업
         log.info("secret : {}", appProperties.getJwt().getSecret());
-        byte[] keyBytes = Decoders.BASE64.decode(appProperties.getJwt().getSecret());
-        log.info("keyBytes : {}", keyBytes);
-        this.key = Keys.hmacShaKeyFor(keyBytes);
+        /*byte[] keyBytes = Decoders.BASE64.decode(appProperties.getJwt().getSecret());
+        log.info("keyBytes : {}", keyBytes); 버전 업으로 사용하지 않음*/
+        this.secretKeySpec = new SecretKeySpec(appProperties.getJwt().getSecret().getBytes()
+                , SignatureAlgorithm.HS256.getJcaName());
     }
     public String generateAccessToken(MyPrincipal principal){
 
@@ -64,7 +68,7 @@ public class JwtTokenProvider {//토큰을 만드는 작업
                 .claims(createClaims(principal))//토큰
                 .issuedAt(new Date(System.currentTimeMillis()))//발행시간
                 .expiration(new Date(System.currentTimeMillis() + tokenValidMs))//만료시간
-                .signWith(this.key)
+                .signWith(secretKeySpec)//암호화
                 .compact();
     }
 
@@ -107,7 +111,7 @@ public class JwtTokenProvider {//토큰을 만드는 작업
        }
     }
 
-    private Claims getAllClaims(String token){
+/*    private Claims getAllClaims(String token){복호화
         return Jwts.parser()
                 .setSigningKey(key)
                 .build()
@@ -115,6 +119,17 @@ public class JwtTokenProvider {//토큰을 만드는 작업
                 .parseClaimsJws(token)
                 .getBody();
     }
+    버전업으로 아래와 같이 변경*/
+
+    public Claims getAllClaims(String token){//복호화
+        return Jwts
+                .parser()
+                .verifyWith(secretKeySpec)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
 
     public Authentication getAuthentication(String token){
         UserDetails userDetails = getUserDetailsFromToken(token);
@@ -123,7 +138,7 @@ public class JwtTokenProvider {//토큰을 만드는 작업
         //로그인 전에는 아이디, 비번
     }
 
-    private UserDetails getUserDetailsFromToken(String token){
+    public UserDetails getUserDetailsFromToken(String token){
 
         try {
             Claims claims = getAllClaims(token);
