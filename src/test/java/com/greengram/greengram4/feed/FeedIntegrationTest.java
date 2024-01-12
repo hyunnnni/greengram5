@@ -33,7 +33,7 @@ public class FeedIntegrationTest extends BaseIntegrationTest {//피드 통합테
         pics.add("https://photo.newsen.com/news_photo/2023/01/16/202301161022545510_1.jpg");
         pics.add("https://dispatch.cdnser.be/cms-content/uploads/2023/04/24/3d7ddd63-f6f5-468d-b0b2-3c3b806443f5.jpg");
 
-        dto.setPics(pics);
+        //dto.setPics(pics);
 
 
         String json = om.writeValueAsString(dto);

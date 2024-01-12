@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +45,11 @@ class FeedServiceTest {
         // 정해진 1이란 값을 리턴하라는 뜻
         when(mapper.insFeedPics(any())).thenReturn(3);
 
+
         FeedInsDto dto = new FeedInsDto();
         dto.setIfeed(100);
         dto.setPics(new ArrayList<>());
-        dto.getPics().add("aaaa");
+        //dto.getPics().add("aaaa");
         ResVo vo = service.postFeed(dto);
         assertEquals(dto.getIfeed(), vo.getResult());
 

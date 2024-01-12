@@ -2,6 +2,7 @@ package com.greengram.greengram4.feed;
 
 import com.greengram.greengram4.feed.model.FeedDelDto;
 import com.greengram.greengram4.feed.model.FeedFavDto;
+import com.greengram.greengram4.feed.model.FeedInsDto;
 import com.greengram.greengram4.feed.model.FeedInsPicsDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -75,6 +76,7 @@ class FeedMapperTest {
     //-----------------pics------------------------
 
     private FeedInsPicsDto dto;
+    private FeedInsDto ddto;
     public FeedMapperTest() {
         List<String> pics = new ArrayList();
         pics.add("a.jpg");
@@ -102,7 +104,7 @@ class FeedMapperTest {
         List<String> result = mapper.feedSelPics(dto.getIfeed());
         assertEquals(0, result.size());
 
-        int result2 = mapper.insFeedPics(dto);
+        int result2 = mapper.insFeedPics(ddto);
         assertEquals(dto.getPics().size(),result2);
 
         List<String> result3 = mapper.feedSelPics(dto.getIfeed());

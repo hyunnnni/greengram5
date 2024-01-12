@@ -9,7 +9,7 @@ import java.util.List;
 public interface FeedMapper {
     int insFeed (FeedInsDto dto);
 
-    int insFeedPics(FeedInsPicsDto pics);
+    int insFeedPics(FeedInsDto dto);
 
     List<FeedSelVo> feedSelAll(FeedSelDto dto);
 

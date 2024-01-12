@@ -11,7 +11,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.util.List;
 
 @Slf4j
@@ -25,8 +27,10 @@ public class FeedController {
 
     @PostMapping
     @Operation(summary = "피드 등록" , description = "피드 등록 처리")
-    public ResVo PostFeed(@RequestBody FeedInsDto dto){
+    public ResVo PostFeed(@RequestPart List<MultipartFile> pics,@RequestPart FeedInsDto dto){
         log.info("dto : {}", dto);
+        log.info("pics : {}", pics.size());
+        dto.setPics(pics);
         ResVo vo = service.postFeed(dto);
         return vo;
 

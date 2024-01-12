@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class FeedService {
     private final AuthenticationFacade authenticationFacade;
 
     public ResVo postFeed(FeedInsDto dto){
-        dto.setIuser(authenticationFacade.getLoginUserPk());
+/*        dto.setIuser(authenticationFacade.getLoginUserPk());
         log.info("dto : {}", dto);
 
         int result =  mapper.insFeed(dto);
@@ -33,6 +34,14 @@ public class FeedService {
             mapper.insFeedPics(pics);
         }
 
+        return new ResVo(dto.getIfeed());*/
+
+        dto.setIuser(authenticationFacade.getLoginUserPk());
+        log.info("dto: {}", dto);
+        int feedAffectedRows = mapper.insFeed(dto);
+        log.info("feedAffectedRows: {}", feedAffectedRows);
+        int feedPicsAffectedRows = mapper.insFeedPics(dto);
+        log.info("feedPicsAffectedRows: {}", feedPicsAffectedRows);
         return new ResVo(dto.getIfeed());
     }
 
