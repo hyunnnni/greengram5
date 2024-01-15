@@ -1,6 +1,7 @@
 package com.greengram.greengram4.feed;
 
 import com.greengram.greengram4.common.Const;
+import com.greengram.greengram4.common.MyFileUtils;
 import com.greengram.greengram4.common.ResVo;
 import com.greengram.greengram4.feed.model.*;
 import com.greengram.greengram4.security.AuthenticationFacade;
@@ -10,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +21,7 @@ public class FeedService {
     private final FeedMapper mapper;
     private final FeedCommentMapper comMapper;
     private final AuthenticationFacade authenticationFacade;
+    private final MyFileUtils mfu;
 
     public ResVo postFeed(FeedInsDto dto){
 /*        dto.setIuser(authenticationFacade.getLoginUserPk());
@@ -40,8 +43,16 @@ public class FeedService {
         log.info("dto: {}", dto);
         int feedAffectedRows = mapper.insFeed(dto);
         log.info("feedAffectedRows: {}", feedAffectedRows);
-        int feedPicsAffectedRows = mapper.insFeedPics(dto);
-        log.info("feedPicsAffectedRows: {}", feedPicsAffectedRows);
+        String target = "/feed/"+ dto.getIfeed();
+
+        FeedPicsInsDto pdto = new FeedPicsInsDto();
+        for(MultipartFile file : dto.getPics()){
+            String saveFileNm = mfu.transferTo(file, target);
+            pdto.getPics().add(saveFileNm);
+        }
+        pdto.setIfeed(dto.getIfeed());
+
+        int feedPicsAffectsedRows = mapper.insFeedPics(pdto);
         return new ResVo(dto.getIfeed());
     }
 

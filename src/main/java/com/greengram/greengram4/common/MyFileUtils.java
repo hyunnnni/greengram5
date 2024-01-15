@@ -24,7 +24,7 @@ public class MyFileUtils {
         //폴더만들기
      public String makeFolders(String path){//경로가 파라미터로 넘어온 후
         File folder = new File(uploadprefixPath, path);//d드라이브 주소 뒤 경로 값과 두 문자열이 합쳐진다
-        folder.mkdir();//폴더를 만든다
+        folder.mkdirs();//폴더를 만든다 mkdir();을 사용하면 안됨
         return folder.getAbsolutePath();//그리고 그 주소값을 리턴
         //절대 주소 abxolute
          //상대 주소
@@ -38,9 +38,10 @@ public class MyFileUtils {
 
      //확장자 얻어오기
     public String getExt(String fileNm){
-        String file = StringUtils.getFilenameExtension(fileNm);
+     /*   String file = StringUtils.getFilenameExtension(fileNm);
 
-        return "."+file;
+        return "."+file;*/
+        return fileNm.substring(fileNm.lastIndexOf("."));
     }
 
     //랜덤파일명 만들기 with 확장자
@@ -54,4 +55,24 @@ public class MyFileUtils {
         return getRandomFileNm(fileNm);
     }
 
+    //메모리에 있는 내용 >> 파일로 옮기는 메소드
+    public String transferTo(MultipartFile mf, String target){
+        String fileNm = getRandomFileNm(mf);
+        String folderPath = makeFolders(target);
+
+        File saveFile = new File(folderPath, fileNm);//파일 객체를 만들어줌
+        saveFile.exists();//파일이 무조건 존재하진 않는다
+
+        try {
+            mf.transferTo(saveFile);//램에 파일 내용이 메모리에 있는데 그것을 실제 옮겨줌
+            return fileNm;//데이터 베이스 저장 시 필요한 랜덤한 파일명을 리턴
+            //경로까지 저장하기 원할 경우에는
+            // 절대경로 >> saveFile.getAbsolutePath() D드라이브부터 쫙 나옴
+            // 상대경로 >> 시작점부터의 경로를 표시
+            //백엔드에서 파일을 리턴할 땐 상대경로를 사용해주는 것이 더 좋다.
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

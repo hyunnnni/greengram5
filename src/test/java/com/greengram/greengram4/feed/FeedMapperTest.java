@@ -1,9 +1,6 @@
 package com.greengram.greengram4.feed;
 
-import com.greengram.greengram4.feed.model.FeedDelDto;
-import com.greengram.greengram4.feed.model.FeedFavDto;
-import com.greengram.greengram4.feed.model.FeedInsDto;
-import com.greengram.greengram4.feed.model.FeedInsPicsDto;
+import com.greengram.greengram4.feed.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -76,7 +73,7 @@ class FeedMapperTest {
     //-----------------pics------------------------
 
     private FeedInsPicsDto dto;
-    private FeedInsDto ddto;
+    private FeedPicsInsDto pdto;
     public FeedMapperTest() {
         List<String> pics = new ArrayList();
         pics.add("a.jpg");
@@ -104,7 +101,7 @@ class FeedMapperTest {
         List<String> result = mapper.feedSelPics(dto.getIfeed());
         assertEquals(0, result.size());
 
-        int result2 = mapper.insFeedPics(ddto);
+        int result2 = mapper.insFeedPics(pdto);
         assertEquals(dto.getPics().size(),result2);
 
         List<String> result3 = mapper.feedSelPics(dto.getIfeed());
