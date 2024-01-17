@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
@@ -68,7 +69,7 @@ public class UserController {
     }
 
     @PatchMapping("/pic")
-    public ResVo patchUserPic(@RequestBody UserPicPatchDto dto) {
-        return service.patchUserPic(dto);
+    public UserPicPatchDto patchUserPic(@RequestPart MultipartFile pic) {
+        return service.patchUserPic(pic);
     }
 }

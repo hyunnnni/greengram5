@@ -1,21 +1,20 @@
 package com.greengram.greengram4.user;
 
-import com.greengram.greengram4.common.AppProperties;
-import com.greengram.greengram4.common.Const;
-import com.greengram.greengram4.common.CookieUtils;
-import com.greengram.greengram4.common.ResVo;
+import com.greengram.greengram4.common.*;
+import com.greengram.greengram4.exception.AuthErrorCode;
+import com.greengram.greengram4.exception.RestApiException;
+import com.greengram.greengram4.security.AuthenticationFacade;
 import com.greengram.greengram4.security.JwtTokenProvider;
 import com.greengram.greengram4.security.MyPrincipal;
 import com.greengram.greengram4.security.MyUserDetails;
 import com.greengram.greengram4.user.model.*;
-import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +24,8 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
     private final AppProperties appProperties;
     private final CookieUtils cookieUtils;
+    private final AuthenticationFacade authenticationFacade;
+    private final MyFileUtils mfu;
     public ResVo postsignup(UserInsSignupDto dto){
         UserInsSignupPdto pdto= UserInsSignupPdto.builder()
                 .uid(dto.getUid())
@@ -46,12 +47,14 @@ public class UserService {
         UserSelEntity entity = mapper.selUser(dto);
 
         if(entity == null){
-            return UserSigninVo.builder().result(Const.LOGIN_NO_UID).build();
+            //return UserSigninVo.builder().result(Const.LOGIN_NO_UID).build();
+            throw new RestApiException(AuthErrorCode.NOT_EXIST_USER_ID);//에러 메세지 쓰로우
         }
 
         if(!passwordEncoder.matches(dto.getUpw(), entity.getUpw())){
 
-            return UserSigninVo.builder().result(Const.LOGIN_DIFF_UPW).build();
+            //return UserSigninVo.builder().result(Const.LOGIN_DIFF_UPW).build();
+            throw new RestApiException(AuthErrorCode.VALID_PASSWORD);//에러 메세지 쓰로우
 
         }
 
@@ -132,8 +135,14 @@ public class UserService {
         return new ResVo(affectedRows);
     }
 
-    public ResVo patchUserPic(UserPicPatchDto dto) {
+    public UserPicPatchDto patchUserPic(MultipartFile pic) {
+        UserPicPatchDto dto = new UserPicPatchDto();
+        dto.setIuser(authenticationFacade.getLoginUserPk());
+        String path = "/user/"+dto.getIuser();
+        mfu.delFolderTrigger(path);
+        String savedPicFileNm = mfu.transferTo(pic, path);
+        dto.setPic(savedPicFileNm);
         int affectedRows = mapper.updUserPic(dto);
-        return new ResVo(affectedRows);
+        return dto;
     }
 }

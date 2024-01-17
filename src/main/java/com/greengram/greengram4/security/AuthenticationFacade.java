@@ -10,6 +10,7 @@ public class AuthenticationFacade {
                                 .getContext()
                                 .getAuthentication()
                                 .getPrincipal();// 강제형변환 Authentication가 UserDetails 상속
+        //Principal에서 iuser를
     }
 
     public int getLoginUserPk() {

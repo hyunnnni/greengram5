@@ -1,9 +1,7 @@
 package com.greengram.greengram4.common;
 
 import lombok.Getter;
-import org.springframework.util.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,27 +15,27 @@ public class MyFileUtils {
 
     //@Value("${file.dir}")
     //private String UpLoadPreFixPath
-    public MyFileUtils(@Value("${file.dir}") String uploadprefixPath){
+    public MyFileUtils(@Value("${file.dir}") String uploadprefixPath) {
         this.uploadprefixPath = uploadprefixPath;
     }
 
-        //폴더만들기
-     public String makeFolders(String path){//경로가 파라미터로 넘어온 후
+    //폴더만들기
+    public String makeFolders(String path) {//경로가 파라미터로 넘어온 후
         File folder = new File(uploadprefixPath, path);//d드라이브 주소 뒤 경로 값과 두 문자열이 합쳐진다
         folder.mkdirs();//폴더를 만든다 mkdir();을 사용하면 안됨
         return folder.getAbsolutePath();//그리고 그 주소값을 리턴
         //절대 주소 abxolute
-         //상대 주소
-     }
+        //상대 주소
+    }
 
-     //랜덤 파일명 만들기
+    //랜덤 파일명 만들기
     //범용 고유 식별자 절대 중복되지 않은 값이 나온다 uuid
-     public String getRandomFileNm(){
+    public String getRandomFileNm() {
         return UUID.randomUUID().toString();
-     }
+    }
 
-     //확장자 얻어오기
-    public String getExt(String fileNm){
+    //확장자 얻어오기
+    public String getExt(String fileNm) {
      /*   String file = StringUtils.getFilenameExtension(fileNm);
 
         return "."+file;*/
@@ -45,18 +43,18 @@ public class MyFileUtils {
     }
 
     //랜덤파일명 만들기 with 확장자
-    public String getRandomFileNm(String originFileNm){
-       return getRandomFileNm()+getExt(originFileNm);
+    public String getRandomFileNm(String originFileNm) {
+        return getRandomFileNm() + getExt(originFileNm);
     }
 
-    public String getRandomFileNm(MultipartFile mf){
+    public String getRandomFileNm(MultipartFile mf) {
         String fileNm = mf.getOriginalFilename();
 
         return getRandomFileNm(fileNm);
     }
 
     //메모리에 있는 내용 >> 파일로 옮기는 메소드
-    public String transferTo(MultipartFile mf, String target){
+    public String transferTo(MultipartFile mf, String target) {
         String fileNm = getRandomFileNm(mf);
         String folderPath = makeFolders(target);
 
@@ -73,6 +71,31 @@ public class MyFileUtils {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void delFolderTrigger(String relativePath){//
+        delFolder(uploadprefixPath + relativePath);
+    }
+
+
+    public void delFolder(String folderPath) {// 폴더 아래의 폴더 및 파일 삭제, 방금 보낸 폴더는 삭제 안 함
+        File folder = new File( folderPath);//폴더 만들기
+        if (folder.exists()) {//존재하는지 체크
+            File[] files = folder.listFiles();
+
+            for (File file : files) {
+                if (file.isDirectory()) {//폴더인지 체크하는 작업 만약 폴더라면 file folder로 넘어가서 재시작
+                    //재귀호출? 내가 나를 실행하는 것
+                    /*String absolutePath = file.getAbsolutePath();
+                    String targetFolder = absolutePath.replace(uploadprefixPath,"");*/
+                    delFolder(file.getAbsolutePath());//다시 시작하면서 해당 폴더를 한 번 더 열게 된다
+                    // 그 안의 사진을 다 삭제한 후 마저 for문을 실행
+                }else {//파일이라면 삭제
+                    file.delete();//삭제 완성
+                }
+            }
+            folder.delete();// 마지막으로 담겨있던 폴더까지 삭제 후 유저 서비스에서 다시 폴더를 생성 후 업로드 사진파일을 저장
         }
     }
 }

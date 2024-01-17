@@ -18,10 +18,10 @@
         ON A.iuser = B.iuser
         <choose>
             <when test ="isFavList == 1" >
-                inner join t_favorite C
+                inner join t_feed_fav C
             </when>
             <otherwise>
-            left join t_favorite C
+            left join t_feed_fav C
             </otherwise>
         </choose>
         ON A.ifeed = C.ifeed
@@ -44,7 +44,7 @@
     <delete id="delComFavPics">
         DELETE B, C, D
         FROM t_feed AS A
-        LEFT JOIN t_favorite AS B
+        LEFT JOIN t_feed_fav AS B
         ON A.ifeed = B.ifeed
         LEFT JOIN t_feed_comment AS C
         ON A.ifeed = C.ifeed

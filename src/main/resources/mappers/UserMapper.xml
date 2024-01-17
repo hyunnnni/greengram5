@@ -28,7 +28,7 @@
         from t_user AS A
         left join t_feed AS B
         on A.iuser = B.iuser
-        left join t_favorite AS C
+        left join t_feed_fav AS C
         on B.ifeed = C.ifeed
         inner join(
         select #{targetIuser} AS iuser

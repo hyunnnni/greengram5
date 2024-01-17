@@ -29,6 +29,13 @@ public class SecurityConfiguration {//자바 2 p.794
                                                                     ,"/index.html"
                                                                     ,"/static/**"
                                                                     ,"/"
+                                                                    ,"/fimg/**"
+                                                                    ,"/css/**"
+                                                                    ,"/feed"//안넣게 되면 제일 처음 들어갔을 때 엑세스 토큰이 없기에 풀어줘야 함
+                                                                    ,"/feed/**"
+                                                                    ,"/pic/**"
+                                                                    ,"/profile"
+                                                                    ,"/profile/**"
                                                                     ,"/swagger.html"
                                                                     ,"/swagger-ui/**"
                                                                     ,"/v3/api-docs/**"

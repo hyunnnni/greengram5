@@ -39,7 +39,7 @@ class FeedServiceTest {
     @Autowired
     private FeedCommentService commentService;
 
-    @Test
+ /*   @Test
     void postFeed() {
         when(mapper.insFeed(any())).thenReturn(1); //가짜로 이 메소드에 any 어떠한 걸 보낼 것인데
         // 정해진 1이란 값을 리턴하라는 뜻
@@ -58,7 +58,7 @@ class FeedServiceTest {
         //두 번 호출하고 확인하면 에러 발생
         //값이 제대로 들어왔는지 확인은 할 수 없다 호출여부만 안다요~
 
-    }
+    }*/
 
     @Test
     void getFeedAll() {

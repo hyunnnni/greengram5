@@ -20,6 +20,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { //요청이 
     private final JwtTokenProvider jwtTokenProvider;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        //요청때마다 헤더에 authentication이 있으면 담고 없으면 안 담는다
         String token = jwtTokenProvider.resolveToken(request);//값이 넘어오면 로그인한 사용자 null이면 로그인한 사용자가 아니다
         log.info("JwtAuthentication-Token : {}", token);
 

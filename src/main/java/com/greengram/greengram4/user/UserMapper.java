@@ -2,6 +2,7 @@ package com.greengram.greengram4.user;
 
 import com.greengram.greengram4.user.model.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 @Mapper
 public interface UserMapper {

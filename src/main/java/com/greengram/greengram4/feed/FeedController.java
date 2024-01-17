@@ -27,12 +27,12 @@ public class FeedController {
 
     @PostMapping
     @Operation(summary = "피드 등록" , description = "피드 등록 처리")
-    public ResVo PostFeed(@RequestPart List<MultipartFile> pics,@RequestPart FeedInsDto dto){
+    public FeedPicsInsDto PostFeed(@RequestPart List<MultipartFile> pics,@RequestPart FeedInsDto dto){
         log.info("dto : {}", dto);
         log.info("pics : {}", pics.size());
         dto.setPics(pics);
-        ResVo vo = service.postFeed(dto);
-        return vo;
+
+        return service.postFeed(dto);
 
     }
 

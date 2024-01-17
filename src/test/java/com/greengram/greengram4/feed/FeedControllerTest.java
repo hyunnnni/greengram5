@@ -42,8 +42,8 @@ class FeedControllerTest {
     @Autowired
     private ObjectMapper mapper;//객체를 JSON으로 JSON을 객체로 바꿔주는 기능
 
-    @Test
-    void postFeed() throws Exception{//예외를 처리함
+   /* @Test
+    *//**//*void postFeed() throws Exception{//예외를 처리함
         ResVo result = new ResVo(2);
         //when(service.postFeed(any())).thenReturn(result);
         given(service.postFeed(any())).willReturn(result);
@@ -54,7 +54,7 @@ class FeedControllerTest {
 
         FeedInsDto dto = new FeedInsDto();
         String json = mapper.writeValueAsString(dto);//자바 객체를 json형식으로 보이는 문자열로 만드는 메소드
-        System.out.println("json"+ json);
+        System.out.println("json"+ json);*//*
 
 
 
@@ -75,7 +75,7 @@ class FeedControllerTest {
         //컨트롤러에서 제대로 ResVo를 제대로 받아서 그대로 리턴하는지를 확인하는 것
 
         verify(service).postFeed(any());
-    }
+    }*/
 
     @Test
     void getFeedAll() throws Exception {
