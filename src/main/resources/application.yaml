@@ -32,3 +32,19 @@ server:
 
 fcm:
   certification: serviceAccountKey.json
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+  datasource:
+    url: jdbc:mariadb://192.168.1.144:5224/greengram3
+    password: keystone
+
+file:
+  dir: /home/download/
+
+server:
+  port: 8081

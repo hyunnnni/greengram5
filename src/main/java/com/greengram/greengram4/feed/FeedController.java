@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +28,9 @@ public class FeedController {
 
     @PostMapping
     @Operation(summary = "피드 등록" , description = "피드 등록 처리")
-    public FeedPicsInsDto PostFeed(@RequestPart List<MultipartFile> pics,@RequestPart FeedInsDto dto){
-        log.info("dto : {}", dto);
-        log.info("pics : {}", pics.size());
+    public FeedPicsInsDto PostFeed(@RequestPart(required = false) List<MultipartFile> pics,@RequestPart FeedInsDto dto){
+        //@RequestPart List<MultipartFile> pics 무조건 사진 값 보내야 함
+
         dto.setPics(pics);
 
         return service.postFeed(dto);
@@ -40,6 +41,7 @@ public class FeedController {
     @GetMapping
     @Operation(summary = "피드 리스트" ,description = "전체 피드 리스트, 특정 사용자")
     public List<FeedSelVo> getFeedAll(FeedSelDto dto){
+
         return service.getFeedAll(dto);
         //service.getFeedAll(dto);
         //return new ArrayList<>();

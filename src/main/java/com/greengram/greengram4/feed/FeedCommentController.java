@@ -4,6 +4,7 @@ import com.greengram.greengram4.common.ResVo;
 import com.greengram.greengram4.feed.model.FeedCommentDelDto;
 import com.greengram.greengram4.feed.model.FeedCommentInsDto;
 import com.greengram.greengram4.feed.model.FeedCommentSelVo;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class FeedCommentController {
     private final FeedCommentService service;
 
     @PostMapping
-    public ResVo postFeedComment(@RequestBody FeedCommentInsDto dto){
+    public ResVo postFeedComment(@Valid FeedCommentInsDto dto){
         log.info("확인~ : {}", dto);
         return service.postFeedComment(dto);
     }

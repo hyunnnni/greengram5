@@ -11,6 +11,7 @@ import com.greengram.greengram4.user.model.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,9 @@ public class UserService {
         int rtCookieMaxAge = appProperties.getJwt().getRefreshTokenCookieMaxAge();
         cookieUtils.deleteCookie( res, "rt");
         cookieUtils.setCookie(res, "rt", refreshToken, rtCookieMaxAge);
+
+/*        HttpSession session = req.getSession(true);
+        session.setAttribute("loginUserPk", entity.getIuser()); 세션 테스트 */
 
         return UserSigninVo.builder()
                 .result(Const.SUCCESS)
