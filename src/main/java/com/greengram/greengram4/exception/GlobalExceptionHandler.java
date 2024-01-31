@@ -110,7 +110,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{//예
         List<ErrorResponse.ValidationError> validationErrorList = e.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(ErrorResponse.ValidationError::of)
+                //.map(ErrorResponse.ValidationError::of) 3가지 다 같은 의미 이게 제일 짧음
+                //.map(item -> ErrorResponse.ValidationError.of(item))
+                .map((item -> {return ErrorResponse.ValidationError.of(item);}))
                 .collect(Collectors.toList());
 
         return ErrorResponse.builder()

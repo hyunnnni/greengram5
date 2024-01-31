@@ -20,8 +20,8 @@ import java.nio.file.Paths;
 //그래서 주소에 /를 치면 index.html파일을 찾아보고 주소 엔터 시 리액트가 동작되며 해당 페이지의 주소값이 자동으로 완성된다.?
 //그렇기 때문에 새로고침 시에 오류가 안 나게 하려면 static파일 안에 해당되는 부분의 파일을 만든 후
 //그 안에 index.html을 넣어준다
-public class WebMvcConfiguration implements WebMvcConfigurer {
-
+public class WebMvcConfiguration implements WebMvcConfigurer {//mvc = 모델뷰컨트롤러
+//끼리끼리 파일을 나눠 작성하자라는 의미?
 
     private final String imgFolder;//yaml에 있는 file.dir과 연결
 

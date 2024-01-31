@@ -16,13 +16,15 @@ import java.sql.SQLOutput;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@Import({MyFileUtils.class})
+@ExtendWith(SpringExtension.class)//스프링 컨테이너 빈등록 된 걸 사용해야 하니 테스트할 때 필요함
+@Import({MyFileUtils.class})//그 중에서도 이것만 사용하겠다라는 뜻
 @TestPropertySource(properties = {
         "file.dir=D:/home/download",
-})//yaml에서 가져오는 값이 아니고 임시로 만든 값을 테스트 시에만 myFileUtils에 넣는다
+})//yaml에서 가져오는 값이 아니고 yaml에 있는 dir의 값을 임시로 만든 값으로 테스트 시에만 myFileUtils에 넣는다
 public class MyFileUtilsTest {
-    @Autowired
+    @Autowired//생성자를 사용하기 전에 이걸 사용해 di를 받았다
+    //주소값을 받을 때 꼬일 수가 있어 지금은 생성자를 사용
+    //테스트 시 생성자 사용이 안되어서 이 애노테이션을 사용한다.
     private MyFileUtils myFileUtils;
 
     @Test

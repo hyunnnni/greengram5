@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //import 되어 있으니 따로 클래스 이름 적고 메소드 호출 안해도 된다.
 @MybatisTest//mybatis를 테스트한다. 스프링을 기동시킨다 dao만 연관되어 빈등록을 해달라 .xml만
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//yaml에 설정해놓은 프로필을 교체하여 테스트를 진행할 수도 있다 그때 명령어를 하나 써야하는데 한 번 알아보기~
 class FeedMapperTest {
 
     @Autowired

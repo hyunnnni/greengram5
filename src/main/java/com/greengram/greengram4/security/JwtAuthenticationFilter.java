@@ -16,7 +16,8 @@ import java.io.IOException;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class JwtAuthenticationFilter extends OncePerRequestFilter { //요청이 들어올 때 마다 실행이 되며 request에 토큰이 들어오는지 확인한다.
+//요청이 들어올 때 마다 실행이 되며 request에 토큰이 들어오는지 확인한다.
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

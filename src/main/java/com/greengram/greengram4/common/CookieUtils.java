@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component//빈등록
 public class CookieUtils {
     public Cookie getCookie(HttpServletRequest request, String name){//request에 담긴 쿠키 가져오기
         Cookie[] cookies = request.getCookies();

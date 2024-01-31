@@ -9,12 +9,13 @@ import java.io.File;
 import java.util.UUID;
 
 @Component
-@Getter
+@Getter//멤버필드 때문에 넣어놓음
 public class MyFileUtils {
     private final String uploadprefixPath;//final 객체 생성 후 사용할 수 있음
 
     //@Value("${file.dir}")
     //private String UpLoadPreFixPath
+    //쿠키유틸즈와 다르게 생성자를 통해서 넣었다
     public MyFileUtils(@Value("${file.dir}") String uploadprefixPath) {
         this.uploadprefixPath = uploadprefixPath;
     }

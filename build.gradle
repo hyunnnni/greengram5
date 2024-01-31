@@ -50,10 +50,15 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
 // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
-    // 스프링 자체 적으로 있는 검증해주는거,,https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    // 스프링 자체적으로 있는 검증해주는거,,https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.1'
-
-
+    //api사용 시 필요한 것
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    //
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.3'
+    //.xml의 로그를 찍어준다 ? 대신 내가 넣은 실제 값이 콘솔에 띄워진다
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
 }
 

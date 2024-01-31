@@ -35,13 +35,17 @@ public class SecurityConfiguration {//자바 2 p.794
                                                                     ,"/feed/**"
                                                                     ,"/pic/**"
                                                                     ,"/profile"
+                                                                    ,"/signin"
+                                                                    ,"/signup"
                                                                     ,"/profile/**"
                                                                     ,"/swagger.html"
                                                                     ,"/swagger-ui/**"
                                                                     ,"/v3/api-docs/**"
+                                                                    ,"/api/open/**"
                                                                     ,"/api/user/refresh-token")
-                        .permitAll()
-                                .anyRequest().authenticated()//matchers 매칭 시키는 것 permitAll 무사 통과 시키겠다 >> 적은 url을 제외하여 접근을 할 수 있게 하겠다는 뜻
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()//matchers 매칭 시키는 것 permitAll 무사 통과 시키겠다 >> 적은 url을 제외하여 접근을 할 수 있게 하겠다는 뜻
                 //패키지/** 한 후 그 안에 메소드 중 mapping방식으로도 나눌 수 있다.
                 //hasAnyrole(  ) 권한에 따라 접근 가능하게 하는 것
                 //anyRequest().hasRole("ADMIN") 그 외에 모든 것들은 ADMIN권한을 가져야 접근이 가능하다
