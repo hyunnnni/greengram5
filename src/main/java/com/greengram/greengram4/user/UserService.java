@@ -17,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -59,7 +61,11 @@ public class UserService {
 
         }
 
-        MyPrincipal mp = new MyPrincipal(entity.getIuser());
+        MyPrincipal mp = MyPrincipal.builder()
+                .iuser(entity.getIuser())
+                .build();
+        mp.getRoles().add(entity.getRole());
+
         String asscessToken= jwtTokenProvider.generateAccessToken(mp);
         String refreshToken= jwtTokenProvider.generateRefreshToken(mp);
 

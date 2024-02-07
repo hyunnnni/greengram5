@@ -10,6 +10,7 @@ public class UserSelEntity {
     private String uid;
     private String upw;
     private String firebaseToken;
+    private String role;
     private String createdAt;
     private String updatedAt;
 }

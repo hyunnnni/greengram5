@@ -3,6 +3,7 @@ package com.greengram.greengram4.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,30 +23,18 @@ public class SecurityConfiguration {//자바 2 p.794
                 .httpBasic(http -> http.disable())// 기본적으로 시큐리티는 백엔드에서도 화면의 ui를 만든다(로그인) 필요없어서 끔
                 .formLogin(form->form.disable())
                 .csrf(csrf ->csrf.disable())//스프링에서 제공해주는 보안기법인데 화면이 없으면 쓸 필요가 없어서 사용하지 않겠다라고 처리
-                .authorizeHttpRequests(auth-> auth.requestMatchers("/api/user/signin"
-                                                                    ,"/api/user/signup"
-                                                                    ,"/error"
-                                                                    ,"/err"
-                                                                    ,"/index.html"
-                                                                    ,"/static/**"
-                                                                    ,"/"
-                                                                    ,"/fimg/**"
-                                                                    ,"/css/**"
-                                                                    ,"/feed"//안넣게 되면 제일 처음 들어갔을 때 엑세스 토큰이 없기에 풀어줘야 함
-                                                                    ,"/feed/**"
-                                                                    ,"/pic/**"
-                                                                    ,"/profile"
-                                                                    ,"/signin"
-                                                                    ,"/signup"
-                                                                    ,"/profile/**"
-                                                                    ,"/swagger.html"
-                                                                    ,"/swagger-ui/**"
-                                                                    ,"/v3/api-docs/**"
-                                                                    ,"/api/open/**"
-                                                                    ,"/api/user/refresh-token")
-                                .permitAll()
-                                .anyRequest()
-                                .authenticated()//matchers 매칭 시키는 것 permitAll 무사 통과 시키겠다 >> 적은 url을 제외하여 접근을 할 수 있게 하겠다는 뜻
+                .authorizeHttpRequests(auth-> auth.requestMatchers(
+                                "/api/feed", "/api/feed/comment"
+                                ,"/api/dm"
+                                ,"/api/dm/msg")
+                                .authenticated()
+                                .requestMatchers(HttpMethod.POST, "/api/user/signout", "api/user/follow")
+                                .authenticated()
+                                .requestMatchers(HttpMethod.GET, "/api/user").authenticated()
+                                .requestMatchers(HttpMethod.PATCH, "/api/user/pic").authenticated()
+                                .requestMatchers(HttpMethod.GET, "/api/feed/fav").hasAnyRole("ADMIN")// 여러 개의 롤을 넣을 수 있다
+                                .anyRequest().permitAll()
+                                //matchers 매칭 시키는 것 permitAll 무사 통과 시키겠다 >> 적은 url을 제외하여 접근을 할 수 있게 하겠다는 뜻
                 //패키지/** 한 후 그 안에 메소드 중 mapping방식으로도 나눌 수 있다.
                 //hasAnyrole(  ) 권한에 따라 접근 가능하게 하는 것
                 //anyRequest().hasRole("ADMIN") 그 외에 모든 것들은 ADMIN권한을 가져야 접근이 가능하다

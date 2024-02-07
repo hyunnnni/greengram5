@@ -2,9 +2,11 @@ package com.greengram.greengram4.security;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -13,7 +15,13 @@ public class MyUserDetails implements UserDetails {
     private MyPrincipal myPrincipal;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {//권한이 무엇이 있느지 통과시키는 부분
-        return null;
+        if(myPrincipal == null) {
+            return null;
+        }
+        return this.myPrincipal.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                //.map(SimpleGrantedAuthority::new)//SimpleGrantedAuthority::new 메소드 참조 가공을 하지 않을 것이라면 이대로 사용하여도 된다
+                .collect(Collectors.toList());
     }
 
     @Override
