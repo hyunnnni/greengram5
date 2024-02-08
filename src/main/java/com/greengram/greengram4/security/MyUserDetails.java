@@ -4,15 +4,18 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Data
 @Builder
-public class MyUserDetails implements UserDetails {
+public class MyUserDetails implements UserDetails, OAuth2User {
 
     private MyPrincipal myPrincipal;
+    private Map<String, Object> attributes;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {//권한이 무엇이 있느지 통과시키는 부분
         if(myPrincipal == null) {
@@ -52,5 +55,10 @@ public class MyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {//활성화
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }

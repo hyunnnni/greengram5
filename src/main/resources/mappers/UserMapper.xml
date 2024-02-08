@@ -5,10 +5,12 @@
 <mapper namespace="com.greengram.greengram4.user.UserMapper">
     <insert id="userInsSignup" useGeneratedKeys="true" keyProperty="iuser">
         INSERT INTO t_user
-        set uid = #{uid},
+        set provider_type = #{providerType},
+        uid = #{uid},
         upw = #{upw},
         nm = #{nm},
-        pic = #{pic}
+        pic = #{pic},
+        role = #{role}
     </insert>
 
     <delete id="delFollow">
@@ -49,8 +51,8 @@
         SELECT iuser, uid, upw, nm, pic, firebase_token AS firebaseToken, role, created_at AS createdAt, updated_at AS updatedAt
         from t_user
         <where>
-            <if test="uid != null and uid != ''">
-                uid = #{uid}
+            <if test="uid != null and uid != ''and providerType != null and providerType != ''">
+                provider_type = #{providerType} AND uid = #{uid}
             </if>
             <if test="iuser>0">
                 and iuser = #{iuser}

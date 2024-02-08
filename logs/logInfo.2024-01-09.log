@@ -1,0 +1,269 @@
+[2024-01-09 12:07:51 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 4072 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 12:07:51 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 12:07:51 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor] [36mDevtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable[0;39m
+[2024-01-09 12:07:51 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor] [36mFor additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'[0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 1025 ms[0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.common.FirebaseConfiguration] [36mFirebaseApp Initialization Complete !!![0;39m
+[2024-01-09 12:07:52 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: dacee0aa-b92d-4481-abc6-7c5aff1933f8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 12:07:52 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 12:07:53 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@72bd3569, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6808c2b9, org.springframework.security.web.context.SecurityContextHolderFilter@615d6cc6, org.springframework.security.web.header.HeaderWriterFilter@21cef1e9, org.springframework.web.filter.CorsFilter@466d91ab, org.springframework.security.web.authentication.logout.LogoutFilter@6347f71e, com.greengram.greengram4.security.JwtAuthenticationFilter@79260171, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58cb96b9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@616cfa87, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4edaa77e, org.springframework.security.web.session.SessionManagementFilter@a6c7c7d, org.springframework.security.web.access.ExceptionTranslationFilter@3e80bb46, org.springframework.security.web.access.intercept.AuthorizationFilter@5459ded1][0;39m
+[2024-01-09 12:07:53 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 12:07:53 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 12:07:53 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 12:07:53 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 2.297 seconds (process running for 2.78)[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-1] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring DispatcherServlet 'dispatcherServlet'[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mInitializing Servlet 'dispatcherServlet'[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mCompleted initialization in 1 ms[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-1] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-2] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-6] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-5] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-10] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-3] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-7] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-8] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-9] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 12:08:10 [32mINFO [0;39m http-nio-8082-exec-9] [org.springdoc.api.AbstractOpenApiResource] [36mInit duration for springdoc-openapi is: 180 ms[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener] [36mRestarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m Thread-5] [org.apache.coyote.http11.Http11NioProtocol] [36mStopping ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 4072 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 255 ms[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 12:17:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 12:17:48 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: 5ba3022c-415e-4504-8ddd-508fe0310716
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 12:17:48 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 12:17:48 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7c522374, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2242c35f, org.springframework.security.web.context.SecurityContextHolderFilter@4fd346a5, org.springframework.security.web.header.HeaderWriterFilter@21586475, org.springframework.web.filter.CorsFilter@419322a8, org.springframework.security.web.authentication.logout.LogoutFilter@1199ffc7, com.greengram.greengram4.security.JwtAuthenticationFilter@45cf8536, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@74342832, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@162d910d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f3fb76c, org.springframework.security.web.session.SessionManagementFilter@79ffdbfb, org.springframework.security.web.access.ExceptionTranslationFilter@b861b46, org.springframework.security.web.access.intercept.AuthorizationFilter@22eb9729][0;39m
+[2024-01-09 12:17:48 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 12:17:48 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 12:17:48 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 12:17:48 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 0.455 seconds (process running for 597.657)[0;39m
+[2024-01-09 12:17:48 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [36mCondition evaluation unchanged[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener] [36mRestarting due to 8 class path changes (0 additions, 0 deletions, 8 modifications)[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m Thread-7] [org.apache.coyote.http11.Http11NioProtocol] [36mStopping ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 4072 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 236 ms[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 13:03:58 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: 0bf2c76a-708b-432d-a96b-d5aa184fcaf7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5f94ee2f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43cc48fb, org.springframework.security.web.context.SecurityContextHolderFilter@5539e117, org.springframework.security.web.header.HeaderWriterFilter@2cf8e743, org.springframework.web.filter.CorsFilter@6b7e6bcf, org.springframework.security.web.authentication.logout.LogoutFilter@4873d477, com.greengram.greengram4.security.JwtAuthenticationFilter@35668fa8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54fedaf0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3fd7fdd3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@706f1f55, org.springframework.security.web.session.SessionManagementFilter@74276d82, org.springframework.security.web.access.ExceptionTranslationFilter@5f3bdfa7, org.springframework.security.web.access.intercept.AuthorizationFilter@9125316][0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 0.431 seconds (process running for 3368.159)[0;39m
+[2024-01-09 13:03:58 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [36mCondition evaluation unchanged[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener] [36mRestarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m Thread-11] [org.apache.coyote.http11.Http11NioProtocol] [36mStopping ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 4072 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 227 ms[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 13:04:47 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: 28c2f990-fb41-4104-9c1d-80493456b14a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5f093457, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@c50d826, org.springframework.security.web.context.SecurityContextHolderFilter@51e720b3, org.springframework.security.web.header.HeaderWriterFilter@6975de61, org.springframework.web.filter.CorsFilter@5b11ff9a, org.springframework.security.web.authentication.logout.LogoutFilter@7b2515ed, com.greengram.greengram4.security.JwtAuthenticationFilter@28b8b282, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f8275aa, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@484324ed, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@743f69a1, org.springframework.security.web.session.SessionManagementFilter@2dcedf31, org.springframework.security.web.access.ExceptionTranslationFilter@355d7cd1, org.springframework.security.web.access.intercept.AuthorizationFilter@36233445][0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 0.393 seconds (process running for 3417.018)[0;39m
+[2024-01-09 13:04:47 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [36mCondition evaluation unchanged[0;39m
+[2024-01-09 13:05:01 [32mINFO [0;39m http-nio-8082-exec-1] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring DispatcherServlet 'dispatcherServlet'[0;39m
+[2024-01-09 13:05:01 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mInitializing Servlet 'dispatcherServlet'[0;39m
+[2024-01-09 13:05:01 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mCompleted initialization in 1 ms[0;39m
+[2024-01-09 13:05:01 [32mINFO [0;39m http-nio-8082-exec-1] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:05:01 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Starting...[0;39m
+[2024-01-09 13:05:01 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-1 - Added connection org.mariadb.jdbc.Connection@3f4059c3[0;39m
+[2024-01-09 13:05:01 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Start completed.[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener] [36mRestarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m Thread-15] [org.apache.coyote.http11.Http11NioProtocol] [36mStopping ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m Thread-15] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown initiated...[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m Thread-15] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown completed.[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 4072 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 218 ms[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 13:08:19 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: 1b1e7bd3-f358-451b-bc18-77e496c5ae2b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 13:08:19 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 13:08:20 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@76fb5c37, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f4aa13c, org.springframework.security.web.context.SecurityContextHolderFilter@30dab37e, org.springframework.security.web.header.HeaderWriterFilter@4c9e04cb, org.springframework.web.filter.CorsFilter@75b2f83a, org.springframework.security.web.authentication.logout.LogoutFilter@18503af, com.greengram.greengram4.security.JwtAuthenticationFilter@4574ea0e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60ac871f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ca86f9d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a59f148, org.springframework.security.web.session.SessionManagementFilter@777f8c6, org.springframework.security.web.access.ExceptionTranslationFilter@5b0174fe, org.springframework.security.web.access.intercept.AuthorizationFilter@1a5ebb47][0;39m
+[2024-01-09 13:08:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 13:08:20 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:08:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 13:08:20 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 0.379 seconds (process running for 3629.541)[0;39m
+[2024-01-09 13:08:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [36mCondition evaluation unchanged[0;39m
+[2024-01-09 13:09:32 [32mINFO [0;39m http-nio-8082-exec-1] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring DispatcherServlet 'dispatcherServlet'[0;39m
+[2024-01-09 13:09:32 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mInitializing Servlet 'dispatcherServlet'[0;39m
+[2024-01-09 13:09:32 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mCompleted initialization in 1 ms[0;39m
+[2024-01-09 13:09:32 [32mINFO [0;39m http-nio-8082-exec-1] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3MzEwMSwiZXhwIjoxNzA0NzgwMzAxfQ.nFQFA-uivKYX6CltZosbyAiMonasetsA2giS76dZ8eQ[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-4] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-6] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-7] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-8] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-3] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-2] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-5] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-9] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-10] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-1] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:03 [32mINFO [0;39m http-nio-8082-exec-10] [org.springdoc.api.AbstractOpenApiResource] [36mInit duration for springdoc-openapi is: 44 ms[0;39m
+[2024-01-09 13:10:37 [32mINFO [0;39m http-nio-8082-exec-4] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 13:10:37 [32mINFO [0;39m http-nio-8082-exec-4] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-2 - Starting...[0;39m
+[2024-01-09 13:10:37 [32mINFO [0;39m http-nio-8082-exec-4] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-2 - Added connection org.mariadb.jdbc.Connection@73533325[0;39m
+[2024-01-09 13:10:37 [32mINFO [0;39m http-nio-8082-exec-4] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-2 - Start completed.[0;39m
+[2024-01-09 13:10:59 [32mINFO [0;39m http-nio-8082-exec-7] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3MzQzNywiZXhwIjoxNzA0NzgwNjM3fQ.FFGXnV9z9Bkol_OZS7MPX3YzVaNXnU7Zcf_G0K5YW0I[0;39m
+[2024-01-09 13:11:09 [32mINFO [0;39m http-nio-8082-exec-5] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3MzQzNywiZXhwIjoxNzA0NzgwNjM3fQ.FFGXnV9z9Bkol_OZS7MPX3YzVaNXnU7Zcf_G0K5YW0I[0;39m
+[2024-01-09 13:11:28 [32mINFO [0;39m http-nio-8082-exec-9] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3MzQzNywiZXhwIjoxNzA0NzgwNjM3fQ.FFGXnV9z9Bkol_OZS7MPX3YzVaNXnU7Zcf_G0K5YW0I[0;39m
+[2024-01-09 13:13:23 [32mINFO [0;39m http-nio-8082-exec-10] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3MzQzNywiZXhwIjoxNzA0NzgwNjM3fQ.FFGXnV9z9Bkol_OZS7MPX3YzVaNXnU7Zcf_G0K5YW0I[0;39m
+[2024-01-09 13:13:53 [32mINFO [0;39m http-nio-8082-exec-4] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3MzQzNywiZXhwIjoxNzA0NzgwNjM3fQ.FFGXnV9z9Bkol_OZS7MPX3YzVaNXnU7Zcf_G0K5YW0I[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener] [36mRestarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m Thread-19] [org.apache.coyote.http11.Http11NioProtocol] [36mStopping ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m Thread-19] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-2 - Shutdown initiated...[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m Thread-19] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-2 - Shutdown completed.[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 4072 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 13:18:19 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 225 ms[0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 13:18:20 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: baeb3fd2-cefb-4a1a-944b-4d6e3b9c2227
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@789d22c6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@12b64554, org.springframework.security.web.context.SecurityContextHolderFilter@4a65c606, org.springframework.security.web.header.HeaderWriterFilter@17d9ff6c, org.springframework.web.filter.CorsFilter@2600e52e, org.springframework.security.web.authentication.logout.LogoutFilter@126549f1, com.greengram.greengram4.security.JwtAuthenticationFilter@1c9c05a7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c4f481b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@14b5ec61, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@18be18e0, org.springframework.security.web.session.SessionManagementFilter@4cd30be0, org.springframework.security.web.access.ExceptionTranslationFilter@1973ebea, org.springframework.security.web.access.intercept.AuthorizationFilter@408fd1e7][0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 0.415 seconds (process running for 4229.657)[0;39m
+[2024-01-09 13:18:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [36mCondition evaluation unchanged[0;39m
+[2024-01-09 14:33:18 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 5552 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 14:33:18 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 14:33:18 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor] [36mDevtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable[0;39m
+[2024-01-09 14:33:18 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor] [36mFor additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'[0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 980 ms[0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 14:33:19 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.common.FirebaseConfiguration] [36mFirebaseApp Initialization Complete !!![0;39m
+[2024-01-09 14:33:19 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: 72fe97a4-1e6a-4692-860a-3df0b3d4ad46
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 14:33:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 14:33:20 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@29b7acea, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@556a4c32, org.springframework.security.web.context.SecurityContextHolderFilter@167e0bd, org.springframework.security.web.header.HeaderWriterFilter@42f8c0ed, org.springframework.web.filter.CorsFilter@21a97752, org.springframework.security.web.authentication.logout.LogoutFilter@59d0a412, com.greengram.greengram4.security.JwtAuthenticationFilter@26f77455, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@12bc952, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3ff02341, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@505f78a4, org.springframework.security.web.session.SessionManagementFilter@5ca79264, org.springframework.security.web.access.ExceptionTranslationFilter@53ae9f40, org.springframework.security.web.access.intercept.AuthorizationFilter@7880942a][0;39m
+[2024-01-09 14:33:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 14:33:20 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 14:33:20 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 14:33:20 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 2.158 seconds (process running for 2.906)[0;39m
+[2024-01-09 14:33:37 [32mINFO [0;39m http-nio-8082-exec-1] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring DispatcherServlet 'dispatcherServlet'[0;39m
+[2024-01-09 14:33:37 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mInitializing Servlet 'dispatcherServlet'[0;39m
+[2024-01-09 14:33:37 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mCompleted initialization in 0 ms[0;39m
+[2024-01-09 14:33:37 [32mINFO [0;39m http-nio-8082-exec-1] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : null[0;39m
+[2024-01-09 14:33:37 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Starting...[0;39m
+[2024-01-09 14:33:37 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-1 - Added connection org.mariadb.jdbc.Connection@4af7af43[0;39m
+[2024-01-09 14:33:37 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Start completed.[0;39m
+[2024-01-09 14:33:56 [33mWARN [0;39m HikariPool-1 housekeeper] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=49s140ms101µs200ns).[0;39m
+[2024-01-09 14:35:10 [32mINFO [0;39m http-nio-8082-exec-2] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3ODQzNiwiZXhwIjoxNzA0Nzg1NjM2fQ.spcFm2HTqecU46yTKnaWv7UYIIolbBMm7XrFi9ZQBV0[0;39m
+[2024-01-09 14:36:11 [33mWARN [0;39m HikariPool-1 housekeeper] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m14s588ms608µs600ns).[0;39m
+[2024-01-09 14:36:48 [32mINFO [0;39m SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown initiated...[0;39m
+[2024-01-09 14:36:48 [32mINFO [0;39m SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown completed.[0;39m
+[2024-01-09 14:36:51 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarting Greengram4Application using Java 17.0.8.1 with PID 4892 (D:\Students\hyun\java\greengram4\build\classes\java\main started by Administrator in D:\Students\hyun\java\greengram4)[0;39m
+[2024-01-09 14:36:51 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m
+[2024-01-09 14:36:51 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor] [36mDevtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable[0;39m
+[2024-01-09 14:36:51 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor] [36mFor additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'[0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8082 (http)[0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.17][0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 984 ms[0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36msecret : DaeguGreenArtAcademyClass502RoomForJavaSpringBootFighting[0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.security.JwtTokenProvider] [36mkeyBytes : [13, -89, -96, -72, 106, -34, 122, 112, 43, -76, 7, 26, 117, -23, -78, 10, 86, -84, -77, -99, 54, 70, -118, 38, 22, -118, -55, 106, -10, -110, -90, -72, -89, -128, 26, 40, -76, 88, -96, -122, -40, -89][0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.common.FirebaseConfiguration] [36mFirebaseApp Initialization Complete !!![0;39m
+[2024-01-09 14:36:52 [33mWARN [0;39m restartedMain] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [36m
+
+Using generated security password: 7de4d42d-4764-469d-a5ed-ade584b009cf
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+[0;39m
+[2024-01-09 14:36:52 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m
+[2024-01-09 14:36:53 [32mINFO [0;39m restartedMain] [org.springframework.security.web.DefaultSecurityFilterChain] [36mWill secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@27c82f93, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@109c9cca, org.springframework.security.web.context.SecurityContextHolderFilter@554b2add, org.springframework.security.web.header.HeaderWriterFilter@59aafc47, org.springframework.web.filter.CorsFilter@106c8191, org.springframework.security.web.authentication.logout.LogoutFilter@16d45ed0, com.greengram.greengram4.security.JwtAuthenticationFilter@4a6e2697, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7db463df, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69a2d597, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33698d64, org.springframework.security.web.session.SessionManagementFilter@7d3f66c0, org.springframework.security.web.access.ExceptionTranslationFilter@9769510, org.springframework.security.web.access.intercept.AuthorizationFilter@1044f4f4][0;39m
+[2024-01-09 14:36:53 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m
+[2024-01-09 14:36:53 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8082"][0;39m
+[2024-01-09 14:36:53 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8082 (http) with context path ''[0;39m
+[2024-01-09 14:36:53 [32mINFO [0;39m restartedMain] [com.greengram.greengram4.Greengram4Application] [36mStarted Greengram4Application in 2.123 seconds (process running for 2.611)[0;39m
+[2024-01-09 14:36:55 [32mINFO [0;39m http-nio-8082-exec-1] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring DispatcherServlet 'dispatcherServlet'[0;39m
+[2024-01-09 14:36:55 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mInitializing Servlet 'dispatcherServlet'[0;39m
+[2024-01-09 14:36:55 [32mINFO [0;39m http-nio-8082-exec-1] [org.springframework.web.servlet.DispatcherServlet] [36mCompleted initialization in 1 ms[0;39m
+[2024-01-09 14:36:58 [32mINFO [0;39m http-nio-8082-exec-1] [com.greengram.greengram4.security.JwtAuthenticationFilter] [36mJwtAuthentication-Token : eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaXVzZXJcIjowfSIsImlhdCI6MTcwNDc3ODQzNiwiZXhwIjoxNzA0Nzg1NjM2fQ.spcFm2HTqecU46yTKnaWv7UYIIolbBMm7XrFi9ZQBV0[0;39m
+[2024-01-09 14:37:14 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Starting...[0;39m
+[2024-01-09 14:37:15 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-1 - Added connection org.mariadb.jdbc.Connection@798bb82[0;39m
+[2024-01-09 14:37:15 [32mINFO [0;39m http-nio-8082-exec-1] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Start completed.[0;39m
+[2024-01-09 14:42:27 [32mINFO [0;39m SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown initiated...[0;39m
+[2024-01-09 14:42:27 [32mINFO [0;39m SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown completed.[0;39m

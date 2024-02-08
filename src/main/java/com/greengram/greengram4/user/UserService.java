@@ -44,8 +44,9 @@ public class UserService {
     }
 
     public UserSigninVo postsignin (HttpServletRequest req, HttpServletResponse res, UserSigninDto dto){
-        UserSigninDto sDto = new UserSigninDto();
-        sDto.setUid(dto.getUid());
+        UserSigninDto sDto = UserSigninDto.builder()
+                .uid(dto.getUid())
+                .build();
 
         UserSelEntity entity = mapper.selUser(dto);
 

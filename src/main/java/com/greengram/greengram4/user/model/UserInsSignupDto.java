@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Schema(title = "회원가입 데이터")
 public class UserInsSignupDto {
+
     @Schema(title= "유저 id")
     private String uid;
 
