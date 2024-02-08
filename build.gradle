@@ -59,6 +59,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.3'
     //.xml의 로그를 찍어준다 ? 대신 내가 넣은 실제 값이 콘솔에 띄워진다
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+    //스프링부트소셜로그인
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 }
 
