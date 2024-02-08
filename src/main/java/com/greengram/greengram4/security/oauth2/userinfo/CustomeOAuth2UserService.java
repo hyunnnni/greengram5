@@ -40,7 +40,7 @@ public class CustomeOAuth2UserService extends DefaultOAuth2UserService {
 
         if(savedUser == null){//회원가입 처리
 
-            mapper.signupUser(OAuth2UserInfo,socialProviderType);
+            //mapper.signupUser(OAuth2UserInfo,socialProviderType);
         }
 
         return null;
