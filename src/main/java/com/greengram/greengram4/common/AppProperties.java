@@ -4,12 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @ConfigurationProperties(prefix = "app")//yaml에 있는 app 끌어오기 prefix앞에 app 붙음
 //Greengram4Application에 @ConfigurationPropertiesScan를 붙여야 이 애노테이션 사용이 가능함
 public class AppProperties {
 
     private final Jwt jwt = new Jwt();// 이너 클래스 사용 시 해당 클래스를 밖에 클래스에서 객체화를 해주어야한다.
+    private final Oauth2 oauth2 = new Oauth2();
     @Getter
     @Setter
     public class Jwt{//클래스 안 클래스 == 이너 클래스
@@ -33,5 +37,10 @@ public class AppProperties {
             this.refreshTokenExpiry = refreshTokenExpiry;
             this.refreshTokenCookieMaxAge = (int)refreshTokenExpiry / 1000;
         }
+    }
+
+    @Getter
+    public static final class Oauth2{
+        private List<String> authorizedRedirectUris = new ArrayList<>();
     }
 }

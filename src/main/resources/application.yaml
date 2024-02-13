@@ -11,6 +11,10 @@ app:
     token-type: Bearer
     access-token-expiry: 7200000
     refresh-token-expiry: 1296000000
+  oauth2:
+    authorized-redirect-uris:
+      - http://localhost:8080/oauth/redirect
+      - http://192.168.0.144:5224/oauth/redirect
 
 file:
   dir: D:/download/greengram5/
@@ -22,7 +26,7 @@ spring:
       max-request-size: 15MB
   datasource:
     #driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:log4jdbc:mariadb://192.168.0.84:3306/greengram5
+    url: jdbc:log4jdbc:mariadb://localhost:3306/greengram5
     username: root
     password: green502
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
@@ -84,7 +88,7 @@ springdoc:
     path: /swagger.html
 
 server:
-  port: 8082
+  port: 8080
 
 fcm:
   certification: serviceAccountKey.json
@@ -105,7 +109,7 @@ spring:
     activate:
       on-profile: "prod"
   datasource:
-    url: jdbc:mariadb://192.168.1.144:5224/greengram3
+    url: jdbc:mariadb://192.168.0.144:5224/greengram3
     password: keystone
 
 file:

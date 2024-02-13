@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -97,16 +98,19 @@ public class UserService {
     public UserSigninVo getRefreshToken(HttpServletRequest req){//액세스 토큰을 다시 만들어서 다시 주는 작업
         //리프레시 토큰에 비해 액세스 토큰은 탈취 당할 경우가 있기에 만료기간이 짧다 그래서 만료 시 다시 만들어주는 작업이 필요
         //자동로그인 원리
-        Cookie cookie = cookieUtils.getCookie(req,"rt");
+        //Cookie cookie = cookieUtils.getCookie(req,"rt");
 
-        if(cookie == null){
+        Optional<String> optRt = cookieUtils.getCookie(req,"rt").map(Cookie::getValue);
+
+
+        if(optRt.isEmpty()){
             return UserSigninVo.builder()
                     .result(Const.FAIL)
                     .accessToken(null)
                     .build();
         }
 
-        String token = cookie.getValue();
+        String token = optRt.get();
 
         if(!jwtTokenProvider.isValidateToken(token)){
             return UserSigninVo.builder()

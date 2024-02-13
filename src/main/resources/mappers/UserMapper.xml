@@ -48,7 +48,8 @@
     </select>
 
     <select id="selUser">
-        SELECT iuser, uid, upw, nm, pic, firebase_token AS firebaseToken, role, created_at AS createdAt, updated_at AS updatedAt
+        SELECT iuser, uid, upw, nm, pic, firebase_token AS firebaseToken, role,
+        provider_type AS providerType, created_at AS createdAt, updated_at AS updatedAt
         from t_user
         <where>
             <if test="uid != null and uid != ''and providerType != null and providerType != ''">

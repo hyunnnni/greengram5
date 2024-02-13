@@ -64,8 +64,9 @@ public class DmService {
         mapper.insMakeDm(dto);
         mapper.insMakeDmUser(dto);
 
-        UserSigninDto sdto = new UserSigninDto();
-        sdto.setIuser(dto.getOtherPersonIuser());
+        UserSigninDto sdto = UserSigninDto.builder()
+                .iuser(dto.getOtherPersonIuser())
+                .build();
         UserSelEntity entity = userMapper.selUser(sdto);//여기도 null이 들어올 수 있다 예외처리,,,
 
 

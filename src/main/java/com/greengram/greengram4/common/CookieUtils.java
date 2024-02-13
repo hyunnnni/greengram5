@@ -3,17 +3,21 @@ package com.greengram.greengram4.common;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.util.SerializationUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.Base64;
+import java.util.Optional;
 
 @Component//빈등록
 public class CookieUtils {
-    public Cookie getCookie(HttpServletRequest request, String name){//request에 담긴 쿠키 가져오기
+    public Optional<Cookie> getCookie(HttpServletRequest request, String name){//request에 담긴 쿠키 가져오기
         Cookie[] cookies = request.getCookies();
 
         if(cookies != null && cookies.length > 0){
             for(Cookie cookie : cookies){
                 if(name.equals(cookie.getName())){
-                    return cookie;
+                    return Optional.of(cookie);
                 }
             }
         }
@@ -33,6 +37,18 @@ public class CookieUtils {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 
+    }
+
+    public String serialize(Object obj) {
+        return Base64.getUrlEncoder().encodeToString(SerializationUtils.serialize(obj));
+    }
+
+    public <T> T deserialize(Cookie cookie, Class<T> cls){//직렬화를 반대로 json을 객체로
+        return cls.cast(
+                SerializationUtils.deserialize(
+                        Base64.getUrlDecoder().decode(cookie.getValue())
+                )
+        );
     }
 
 }

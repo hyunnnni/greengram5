@@ -1,5 +1,9 @@
 package com.greengram.greengram4.security;
 
+import com.greengram.greengram4.security.oauth2.CustomOAuth2UserService;
+import com.greengram.greengram4.security.oauth2.OAuth2AuthenticationFailureHandler;
+import com.greengram.greengram4.security.oauth2.OAuth2AuthenticationRequestBasedOnCookieRepository;
+import com.greengram.greengram4.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +20,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration {//자바 2 p.794
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+    private final OAuth2AuthenticationRequestBasedOnCookieRepository oAuth2AuthenticationRequestBasedOnCookieRepository;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
@@ -47,6 +55,14 @@ public class SecurityConfiguration {//자바 2 p.794
                     except.authenticationEntryPoint(new JwtAuthenticationEntryPoint())
                             .accessDeniedHandler(new JwtAccessDeniedHandler());
                 })
+                .oauth2Login(oauth2 -> oauth2.authorizationEndpoint(auth ->
+                        auth.baseUri("/oauth2/authorization")
+                                .authorizationRequestRepository(oAuth2AuthenticationRequestBasedOnCookieRepository))
+                        .redirectionEndpoint(redirection -> redirection.baseUri("/*/oauth2/code/*"))
+                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
+                        .successHandler(oAuth2AuthenticationSuccessHandler)
+                        .failureHandler(oAuth2AuthenticationFailureHandler)
+                )
                 .build();
     }
 
