@@ -1,6 +1,6 @@
 package com.greengram.greengram4.security;
 
-import com.greengram.greengram4.user.model.UserSelEntity;
+import com.greengram.greengram4.user.model.UserModel;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +19,7 @@ public class MyUserDetails implements UserDetails, OAuth2User {
     private MyPrincipal myPrincipal;
     private Map<String, Object> attributes;//OAuth2User를 사용시 필수 무조건 이걸 구현을 해야하기에 오류가 생기지 않는다
     //메소드를 넣어도 되고 이렇게 멤버필드로 만들어도 된다.
-    private UserSelEntity userEntity;//로그인 시 프론트에서 액세스 토큰만 받고 있는데 이 값들도 필요하기에
+    private UserModel userEntity;//로그인 시 프론트에서 액세스 토큰만 받고 있는데 이 값들도 필요하기에
     //한 번의 통신으로 두 개의 값 다 받고싶기에 만든 멤버필드
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {//권한이 무엇이 있느지 통과시키는 부분
@@ -40,7 +40,7 @@ public class MyUserDetails implements UserDetails, OAuth2User {
     @Override
     public String getUsername() {//로그인 시 루틴을 탄다면 사용하는 메소드 직접 패스워드와 이름을 넣어주어야 함 지금은 현재 커스터마이징으로 사용 중이라 필요없음
 
-        return userEntity.getUid();
+        return userEntity == null ? null : userEntity.getUid();
     }
 
     @Override

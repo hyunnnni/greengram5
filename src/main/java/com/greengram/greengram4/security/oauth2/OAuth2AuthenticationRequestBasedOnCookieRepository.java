@@ -43,7 +43,7 @@ implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
         cookieUtils.setCookie(response, OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME
                 , serializeAuthReq, COOKIE_EXPIRE_SECONDS);
 
-        String redirectUriAfterLogin = request.getParameter(OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME);
+        String redirectUriAfterLogin = request.getParameter(REDIRECT_URI_PARAM_COOKIE_NAME);
         //getParameter : 쿼리스트링에 값이 없으면 바디 안까지 찾아준다
         //OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME 이 이름으로 값을 빼서 redirectUriAfterLogin에 넣어준다
 

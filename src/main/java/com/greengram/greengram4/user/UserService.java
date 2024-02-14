@@ -11,13 +11,11 @@ import com.greengram.greengram4.user.model.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,7 +47,7 @@ public class UserService {
                 .uid(dto.getUid())
                 .build();
 
-        UserSelEntity entity = mapper.selUser(dto);
+        UserModel entity = mapper.selUser(dto);
 
         if(entity == null){
             //return UserSigninVo.builder().result(Const.LOGIN_NO_UID).build();

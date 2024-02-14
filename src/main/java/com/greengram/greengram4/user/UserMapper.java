@@ -2,7 +2,6 @@ package com.greengram.greengram4.user;
 
 import com.greengram.greengram4.user.model.*;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.multipart.MultipartFile;
 
 @Mapper
 public interface UserMapper {
@@ -14,7 +13,7 @@ public interface UserMapper {
 
     UserInfoVo userInfoSel (UserInfoSelDto dto);
 
-    UserSelEntity selUser(UserSigninDto dto);
+    UserModel selUser(UserSigninDto dto);
 
     int updUserFirebaseToken(UserFirebaseTokenPatchDto dto);
     int updUserPic(UserPicPatchDto dto);

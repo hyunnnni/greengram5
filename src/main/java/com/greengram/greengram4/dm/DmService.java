@@ -7,7 +7,7 @@ import com.google.firebase.messaging.Notification;
 import com.greengram.greengram4.common.ResVo;
 import com.greengram.greengram4.dm.model.*;
 import com.greengram.greengram4.user.UserMapper;
-import com.greengram.greengram4.user.model.UserSelEntity;
+import com.greengram.greengram4.user.model.UserModel;
 import com.greengram.greengram4.user.model.UserSigninDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,7 +67,7 @@ public class DmService {
         UserSigninDto sdto = UserSigninDto.builder()
                 .iuser(dto.getOtherPersonIuser())
                 .build();
-        UserSelEntity entity = userMapper.selUser(sdto);//여기도 null이 들어올 수 있다 예외처리,,,
+        UserModel entity = userMapper.selUser(sdto);//여기도 null이 들어올 수 있다 예외처리,,,
 
 
         return DmSelVo.builder()
@@ -88,7 +88,7 @@ public class DmService {
         String createdAt = now.format(formatter); // 포맷 적용
 
         //상대방의 firebaseToken값 필요. 나의 pic, iuser값 필요.
-        UserSelEntity otherPerson = mapper.selOtherPersonByLoginUser(dto);
+        UserModel otherPerson = mapper.selOtherPersonByLoginUser(dto);
 
         try {
 

@@ -61,6 +61,8 @@ dependencies {
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     //스프링부트소셜로그인
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    //
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 }
 

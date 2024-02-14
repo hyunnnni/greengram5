@@ -6,7 +6,7 @@ import com.greengram.greengram4.security.oauth2.userinfo.OAuth2UserInfo;
 import com.greengram.greengram4.security.oauth2.userinfo.OAuth2UserInfoFactory;
 import com.greengram.greengram4.user.UserMapper;
 import com.greengram.greengram4.user.model.UserInsSignupPdto;
-import com.greengram.greengram4.user.model.UserSelEntity;
+import com.greengram.greengram4.user.model.UserModel;
 import com.greengram.greengram4.user.model.UserSigninDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -38,7 +38,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .uid(OAuth2UserInfo.getId())
                 .build();
 
-        UserSelEntity savedUser = mapper.selUser(dto);//null이 들어오면 회원가입을 안 한 유저
+        UserModel savedUser = mapper.selUser(dto);//null이 들어오면 회원가입을 안 한 유저
 
         if(savedUser == null){//회원가입 처리
 
@@ -56,7 +56,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .build();//이게 유저 디테일에서 있는 한 번의 통신으로 두 개의 값 모두 받는 방법
     }
 
-    private UserSelEntity signupUser(OAuth2UserInfo OAuth2UserInfo, SocialProviderType socialProviderType){
+    private UserModel signupUser(OAuth2UserInfo OAuth2UserInfo, SocialProviderType socialProviderType){
         UserInsSignupPdto pdto = UserInsSignupPdto.builder()
                 .providerType(socialProviderType.name())
                 .uid(OAuth2UserInfo.getId())
@@ -69,7 +69,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         int result = mapper.userInsSignup(pdto);
 
-        UserSelEntity entity = new UserSelEntity();
+        UserModel entity = new UserModel();
         entity.setIuser(pdto.getIuser());
         entity.setRole(pdto.getRole());
         entity.setUid(pdto.getUid());

@@ -21,7 +21,7 @@ public class CookieUtils {
                 }
             }
         }
-        return null;
+        return Optional.empty();
     }
     public void setCookie(HttpServletResponse response, String name, String value, int maxAge){
         Cookie cookie = new Cookie(name, value);

@@ -5,7 +5,7 @@ import com.greengram.greengram4.common.CookieUtils;
 import com.greengram.greengram4.security.JwtTokenProvider;
 import com.greengram.greengram4.security.MyPrincipal;
 import com.greengram.greengram4.security.MyUserDetails;
-import com.greengram.greengram4.user.model.UserSelEntity;
+import com.greengram.greengram4.user.model.UserModel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,12 +17,10 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.naming.AuthenticationException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
-import static com.greengram.greengram4.security.oauth2.OAuth2AuthenticationRequestBasedOnCookieRepository.OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME;
 import static com.greengram.greengram4.security.oauth2.OAuth2AuthenticationRequestBasedOnCookieRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 @Slf4j
@@ -68,7 +66,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         cookieUtils.deleteCookie( response, "rt");
         cookieUtils.setCookie(response, "rt", rt, rtCookieMaxAge);
 
-        UserSelEntity userEntity = myUserDetails.getUserEntity();
+        UserModel userEntity = myUserDetails.getUserEntity();
 
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("access_token", at)
