@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 //날짜 관련 값들을 체크해 원하는 곳에 값을 넣는 것?
 public class BaseEntity {
     @CreatedDate
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
