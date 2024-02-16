@@ -1,6 +1,9 @@
 package com.greengram.greengram4.user;
 
 import com.greengram.greengram4.common.*;
+import com.greengram.greengram4.entity.UserEntity;
+import com.greengram.greengram4.entity.UserFollowEntity;
+import com.greengram.greengram4.entity.UserFollowIds;
 import com.greengram.greengram4.exception.AuthErrorCode;
 import com.greengram.greengram4.exception.RestApiException;
 import com.greengram.greengram4.security.AuthenticationFacade;
@@ -14,9 +17,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +33,23 @@ public class UserService {
     private final CookieUtils cookieUtils;
     private final AuthenticationFacade authenticationFacade;
     private final MyFileUtils mfu;
-    public ResVo postsignup(UserInsSignupDto dto){
+    private final UserRepository repository;
+    private final UserFollowRepository followRepository;
+
+    public ResVo postsignup(UserInsSignupDto dto){//jpa를 사용한 insert
+        UserEntity entity = UserEntity.builder()
+                .providerType(ProviderTypeEnum.LOCAL)
+                .uid(dto.getUid())
+                .upw(passwordEncoder.encode(dto.getUpw()))
+                .nm(dto.getNm())
+                .pic(dto.getPic())
+                .role(RoleEunm.USER)
+                .build();
+
+        repository.save(entity);
+        return new ResVo(entity.getIuser().intValue());
+    }
+    /*public ResVo postsignup(UserInsSignupDto dto){
         UserInsSignupPdto pdto= UserInsSignupPdto.builder()
                 .uid(dto.getUid())
                 .upw(passwordEncoder.encode(dto.getUpw()))
@@ -40,9 +61,45 @@ public class UserService {
             return new ResVo(result);
         }
         return new ResVo(pdto.getIuser());
+    }*/
+
+    public UserSigninVo postsignin (HttpServletResponse res, UserSigninDto dto) {
+        Optional<UserEntity> optionalUserEntity =
+                repository.findByProviderTypeAndUid(ProviderTypeEnum.LOCAL, dto.getUid());
+        UserEntity entity = optionalUserEntity.orElseThrow(
+                () -> new RestApiException(AuthErrorCode.NOT_EXIST_USER_ID));
+
+        if(!passwordEncoder.matches(dto.getUpw(), entity.getUpw())){
+            throw new RestApiException(AuthErrorCode.VALID_PASSWORD);
+        }
+        int iuser = entity.getIuser().intValue();
+        MyPrincipal myPrincipal = MyPrincipal.builder()
+                .iuser(iuser)
+                .build();
+        myPrincipal.getRoles().add(entity.getRole().name());
+
+
+        String at = jwtTokenProvider.generateAccessToken(myPrincipal);
+        String rt = jwtTokenProvider.generateRefreshToken(myPrincipal);
+
+        //rt > cookie에 담을꺼임
+        int rtCookieMaxAge = appProperties.getJwt().getRefreshTokenCookieMaxAge();
+        cookieUtils.deleteCookie(res, "rt");
+        cookieUtils.setCookie(res, "rt", rt, rtCookieMaxAge);
+
+        return UserSigninVo.builder()
+                .result(Const.SUCCESS)
+                .iuser(iuser)
+                .nm(entity.getNm())
+                .pic(entity.getPic())
+                .firebaseToken(entity.getFirebaseToken())
+                .accessToken(at)
+                .build();
+
     }
 
-    public UserSigninVo postsignin (HttpServletRequest req, HttpServletResponse res, UserSigninDto dto){
+   /* public UserSigninVo postsignin (HttpServletResponse res, UserSigninDto dto){
+
         UserSigninDto sDto = UserSigninDto.builder()
                 .uid(dto.getUid())
                 .build();
@@ -74,8 +131,8 @@ public class UserService {
         cookieUtils.deleteCookie( res, "rt");
         cookieUtils.setCookie(res, "rt", refreshToken, rtCookieMaxAge);
 
-/*        HttpSession session = req.getSession(true);
-        session.setAttribute("loginUserPk", entity.getIuser()); 세션 테스트 */
+*//*        HttpSession session = req.getSession(true);
+        session.setAttribute("loginUserPk", entity.getIuser()); 세션 테스트 *//*
 
         return UserSigninVo.builder()
                 .result(Const.SUCCESS)
@@ -86,7 +143,7 @@ public class UserService {
                 .firebaseToken(entity.getFirebaseToken())
                 .build();
 
-    }
+    }*/
 
     public ResVo signout(HttpServletResponse res){
         cookieUtils.deleteCookie(res, "rt");
@@ -129,26 +186,73 @@ public class UserService {
                 .accessToken(accessToken)
                 .build();
     }
-
     public ResVo toggleFollow(UserFollowDto dto){
+        UserFollowIds ids= new UserFollowIds();
+        ids.setFromIuser((long)authenticationFacade.getLoginUserPk());
+        ids.setToIuser(dto.getToIuser());
+
+        AtomicInteger atomic = new AtomicInteger(Const.FAIL);
+
+        followRepository
+                .findById(ids)
+                .ifPresentOrElse(
+                        entity -> {followRepository.delete(entity);}//존재한다면 삭제
+                        ,() -> {//존재하지 않는다면
+                            atomic.set(Const.SUCCESS);
+                            UserFollowEntity saveUserFollowEntity = new UserFollowEntity();
+                            saveUserFollowEntity.setUserFollowIds(ids);
+                            UserEntity fromUserEntity = repository.getReferenceById((long)authenticationFacade.getLoginUserPk());
+                            UserEntity toUserEntity = repository.getReferenceById(dto.getToIuser());
+                            saveUserFollowEntity.setFromUserEntity(fromUserEntity);
+                            saveUserFollowEntity.setToUserEntity(toUserEntity);
+                            followRepository.save(saveUserFollowEntity);
+                        }
+                );
+        return new ResVo(atomic.get());
+    }
+
+/*    public ResVo toggleFollow(UserFollowDto dto){
         int result = mapper.delFollow(dto);
         if(result == 1){
             return new ResVo(Const.FAIL);
         }
         result = mapper.insFollow(dto);
         return new ResVo(Const.SUCCESS);
-    }
+    }*/
 
     public UserInfoVo getUserInfoSel(UserInfoSelDto dto){
         return mapper.userInfoSel(dto);
     }
 
+    @Transactional
     public ResVo patchUserFirebaseToken(UserFirebaseTokenPatchDto dto) {
-        int affectedRows = mapper.updUserFirebaseToken(dto);
-        return new ResVo(affectedRows);
+        UserEntity entity = repository.getReferenceById((long)authenticationFacade.getLoginUserPk());
+        entity.setFirebaseToken(dto.getFirebaseToken());
+        return new ResVo(Const.SUCCESS);
     }
 
+    /*public ResVo patchUserFirebaseToken(UserFirebaseTokenPatchDto dto) {
+        int affectedRows = mapper.updUserFirebaseToken(dto);
+        return new ResVo(affectedRows);
+    }*/
+
+    @Transactional
     public UserPicPatchDto patchUserPic(MultipartFile pic) {
+        Long iuser = Long.valueOf(authenticationFacade.getLoginUserPk());
+        UserEntity entity = repository.getReferenceById(iuser);
+        String path = "/user/" + iuser;
+        mfu.delFolderTrigger(path);
+        String savedPicFileNm = mfu.transferTo(pic, path);
+        entity.setPic(savedPicFileNm);
+
+        UserPicPatchDto dto = new UserPicPatchDto();
+        dto.setIuser(iuser.intValue());
+        dto.setPic(savedPicFileNm);
+        return dto;
+
+
+    }
+/*    public UserPicPatchDto patchUserPic(MultipartFile pic) {
         UserPicPatchDto dto = new UserPicPatchDto();
         dto.setIuser(authenticationFacade.getLoginUserPk());
         String path = "/user/"+dto.getIuser();
@@ -157,5 +261,5 @@ public class UserService {
         dto.setPic(savedPicFileNm);
         int affectedRows = mapper.updUserPic(dto);
         return dto;
-    }
+    }*/
 }

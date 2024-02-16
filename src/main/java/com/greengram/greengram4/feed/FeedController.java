@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,9 +42,9 @@ public class FeedController {
 
     @GetMapping
     @Operation(summary = "피드 리스트" ,description = "전체 피드 리스트, 특정 사용자")
-    public List<FeedSelVo> getFeedAll(FeedSelDto dto){
+    public List<FeedSelVo> getFeedAll(FeedSelDto dto, @PageableDefault(page = 1, size = 30) Pageable pageable){//페이지 값을 받는 대신 들어오는 값(디폴트는 만약 값이 안 들어왔을 때 사용하는 값)
 
-        return service.getFeedAll(dto);
+        return service.getFeedAll(dto, pageable);
         //service.getFeedAll(dto);
         //return new ArrayList<>();
     }

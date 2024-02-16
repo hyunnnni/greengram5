@@ -3,11 +3,17 @@ package com.greengram.greengram4.entity;
 import com.greengram.greengram4.common.ProviderTypeEnum;
 import com.greengram.greengram4.common.RoleEunm;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.parameters.P;
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity//무조건 pk를 적용해주어야 빨간줄이 안 뜬다
 @Table(name = "t_user",uniqueConstraints = {
         @UniqueConstraint(
@@ -41,7 +47,7 @@ public class UserEntity extends BaseEntity{
     private String pic;
 
     @Column(length = 2100, name = "firebase_token")
-    private ProviderTypeEnum firebaseToken;
+    private String firebaseToken;
 
     @Column
     @Enumerated(value = EnumType.STRING)

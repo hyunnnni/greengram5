@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)//이 entity를 적용하기 전이나 후에 AuditingEntityListener(감시하다) 호출해 공통적으로 처리하는 기능?
 public class CreatedAtEntity {
     @CreatedDate
     @Column(updatable = false)

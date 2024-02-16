@@ -35,10 +35,9 @@ public class UserController {
     }
     @PostMapping("/signin")
     @Operation(summary = "인증", description = "아이디/ 비번을 활용한 인증처리")
-    public UserSigninVo postsingin(HttpServletRequest req
-            , HttpServletResponse res
+    public UserSigninVo postsingin(HttpServletResponse res
             , @RequestBody UserSigninDto dto){
-        return service.postsignin(req, res, dto);
+        return service.postsignin( res, dto);
     }
 
     @PostMapping("/signout")

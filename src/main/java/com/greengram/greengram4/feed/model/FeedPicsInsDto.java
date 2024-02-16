@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 public class FeedPicsInsDto {
-    private int ifeed;
+    private Long ifeed;
     private List<String> pics = new ArrayList<>();
 }

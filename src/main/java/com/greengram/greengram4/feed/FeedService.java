@@ -3,18 +3,26 @@ package com.greengram.greengram4.feed;
 import com.greengram.greengram4.common.Const;
 import com.greengram.greengram4.common.MyFileUtils;
 import com.greengram.greengram4.common.ResVo;
+import com.greengram.greengram4.entity.FeedEntity;
+import com.greengram.greengram4.entity.FeedPicsEntity;
+import com.greengram.greengram4.entity.UserEntity;
 import com.greengram.greengram4.exception.FeedErrorCode;
 import com.greengram.greengram4.exception.RestApiException;
 import com.greengram.greengram4.feed.model.*;
 import com.greengram.greengram4.security.AuthenticationFacade;
+import com.greengram.greengram4.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,45 +32,49 @@ public class FeedService {
     private final FeedCommentMapper comMapper;
     private final AuthenticationFacade authenticationFacade;
     private final MyFileUtils mfu;
-
+    private final FeedRepository repository;
+    private final UserRepository userRepository;
+    @Transactional
     public FeedPicsInsDto postFeed(FeedInsDto dto){
-/*        dto.setIuser(authenticationFacade.getLoginUserPk());
-        log.info("dto : {}", dto);
 
-        int result =  mapper.insFeed(dto);
-
-        if(!dto.getPics().isEmpty()) {//앞의 배열이 비어있는지 아닌지 true, false 가려준다.
-            FeedInsPicsDto pics = FeedInsPicsDto.builder()
-                    .ifeed(dto.getIfeed())
-                    .pics(dto.getPics())
-                    .build();
-            mapper.insFeedPics(pics);
-        }
-
-        return new ResVo(dto.getIfeed());*/
-        if(dto.getPics() ==null){
+        if (dto.getPics() == null) {
             throw new RestApiException(FeedErrorCode.PICS_THEN_ONE);
         }
 
-        dto.setIuser(authenticationFacade.getLoginUserPk());
-        log.info("dto: {}", dto);
-        int feedAffectedRows = mapper.insFeed(dto);
-        log.info("feedAffectedRows: {}", feedAffectedRows);
-        String target = "/feed/"+ dto.getIfeed();
+       UserEntity userEntity = userRepository.getReferenceById((long)authenticationFacade.getLoginUserPk());
+
+        FeedEntity entity = FeedEntity.builder()
+                .iuser(userEntity)
+                .contents(dto.getContents())
+                .location(dto.getLocation())
+                .build();
+
+        repository.save(entity);
+
+        String target = "/feed/" + entity.getIfeed();
 
         FeedPicsInsDto pdto = new FeedPicsInsDto();
-        for(MultipartFile file : dto.getPics()){
+        for (MultipartFile file : dto.getPics()) {
             String saveFileNm = mfu.transferTo(file, target);
             pdto.getPics().add(saveFileNm);
         }
-        pdto.setIfeed(dto.getIfeed());
+        pdto.setIfeed(entity.getIfeed());
+        List<FeedPicsEntity> feedPicsEntityList = pdto.getPics()
+                                                        .stream()
+                                                        .map(item -> FeedPicsEntity.builder()
+                                                                .ifeed(entity)
+                                                                .pic(item)
+                                                                .build()).collect(Collectors.toList());
+        entity.getFeedPicsEntityList().addAll(feedPicsEntityList);
 
-        int feedPicsAffectsedRows = mapper.insFeedPics(pdto);
         return pdto;
     }
 
-    public List<FeedSelVo> getFeedAll(FeedSelDto dto){
-        List<FeedSelVo> vo = mapper.feedSelAll(dto);
+    public List<FeedSelVo> getFeedAll(FeedSelDto dto, Pageable pageable){
+        List<FeedSelVo> vo = null;
+        if(dto.getIsFavList() == 0 && dto.getTargetIuser() > 0){
+
+        }
 
         FeedCommentSelDto fcDto = FeedCommentSelDto.builder()
                 .startIdx(0)
