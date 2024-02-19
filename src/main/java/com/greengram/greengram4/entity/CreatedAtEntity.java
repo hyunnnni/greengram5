@@ -10,10 +10,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Data
-@MappedSuperclass
+@MappedSuperclass// 상속
 @EntityListeners(AuditingEntityListener.class)//이 entity를 적용하기 전이나 후에 AuditingEntityListener(감시하다) 호출해 공통적으로 처리하는 기능?
 public class CreatedAtEntity {
-    @CreatedDate
+    @CreatedDate//자동 날짜 생성
     @Column(updatable = false)
     private LocalDateTime createdAt;
 }

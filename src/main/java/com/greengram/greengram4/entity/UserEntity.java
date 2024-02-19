@@ -20,6 +20,8 @@ import org.springframework.security.core.parameters.P;
                 columnNames = {"provider_type", "uid"}
         )
 })//복합 유니크를 줄 때 방법
+//그냥 유니크는 같은 내용이 한 컬럼에 2개이상 들어가지 않는다
+//복합 유니크는 두 가지 컬럼을 합쳤을 때 같은 내용만 아니면 된다 복합키와 같다
 //복합키는 방식이 두가지 객체지향방식, rdb방식 쿼리를 적을 시 길이와 성능이 다르다는 차이점이 있다.
 //@Embeddable 객제지향방식
 public class UserEntity extends BaseEntity{

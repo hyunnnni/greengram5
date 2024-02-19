@@ -17,6 +17,6 @@ import java.time.LocalDateTime;
 public class BaseEntity extends CreatedAtEntity{
 
 
-    @LastModifiedDate
+    @LastModifiedDate//자동으로 업데이트 시의 날짜를 만들어줌
     private LocalDateTime updatedAt;
 }

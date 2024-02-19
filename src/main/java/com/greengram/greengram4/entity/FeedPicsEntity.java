@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.checker.units.qual.N;
 
 @Data
 @Builder
@@ -22,7 +21,7 @@ public class FeedPicsEntity extends CreatedAtEntity{
 
     @ManyToOne
     @JoinColumn(name = "ifeed", nullable = false)
-    private FeedEntity ifeed;
+    private FeedEntity feedEntity;
 
     @Column(length = 2500)
     private String pic;
