@@ -3,10 +3,7 @@ package com.greengram.greengram4.feed;
 import com.greengram.greengram4.common.Const;
 import com.greengram.greengram4.common.MyFileUtils;
 import com.greengram.greengram4.common.ResVo;
-import com.greengram.greengram4.entity.FeedCommentEntity;
-import com.greengram.greengram4.entity.FeedEntity;
-import com.greengram.greengram4.entity.FeedPicsEntity;
-import com.greengram.greengram4.entity.UserEntity;
+import com.greengram.greengram4.entity.*;
 import com.greengram.greengram4.exception.FeedErrorCode;
 import com.greengram.greengram4.exception.RestApiException;
 import com.greengram.greengram4.feed.model.*;
@@ -34,6 +31,7 @@ public class FeedService {
     private final FeedRepository repository;
     private final UserRepository userRepository;
     private final FeedCommentRepository feedCommentRepository;
+    private final FeedFavRepository feedFavRepository;
     @Transactional
     public FeedPicsInsDto postFeed(FeedInsDto dto){
 
@@ -71,6 +69,7 @@ public class FeedService {
         return pdto;
     }
 
+    @Transactional
     public List<FeedSelVo> getFeedAll(FeedSelDto dto, Pageable pageable) {
         List<FeedEntity> feedEntityList = null;
         if (dto.getIsFavList() == 0 && dto.getTargetIuser() > 0) {
@@ -81,19 +80,34 @@ public class FeedService {
 
         return feedEntityList == null ? new ArrayList<>()//펑션은 파라미터, 리턴이 있고 컨슈머는 파라미터만 있다 서큘라어쩌구 리턴만 있다
                 : feedEntityList.stream().map(item -> {
+                    FeedFavIds feedFavIds = new FeedFavIds();
+                    feedFavIds.setIuser((long) authenticationFacade.getLoginUserPk());
+                    feedFavIds.setIfeed(item.getIfeed());
+                    int isFav = feedFavRepository.findById(feedFavIds).isPresent() ? 1 : 0;
 
-            List<FeedCommentSelVo> cmtlist =
-                    feedCommentRepository.findAllTop4ByFeedEntity(item).stream().map(
-                            cmt -> FeedCommentSelVo.builder()
-                                    .ifeedComment(cmt.getIfeedComment().intValue())
-                                    .comment(cmt.getComment())
-                                    .writerIuser(cmt.getUserEntity().getIuser().intValue())
-                                    .writerPic(cmt.getUserEntity().getPic())
-                                    .writerNm(cmt.getUserEntity().getNm())
-                                    .createdAt(cmt.getCreatedAt().toString())
-                                    .build()
+                    List<String> piclist = item.getFeedPicsEntityList().stream().map(
+                             feedPicsEntity -> feedPicsEntity.getPic()
                     ).collect(Collectors.toList());
+
+                    List<FeedCommentSelVo> cmtlist =
+                            feedCommentRepository.findAllTop4ByFeedEntity(item).stream().map(
+                                    cmt -> FeedCommentSelVo.builder()
+                                            .ifeedComment(cmt.getIfeedComment().intValue())
+                                            .comment(cmt.getComment())
+                                            .writerIuser(cmt.getUserEntity().getIuser().intValue())
+                                            .writerPic(cmt.getUserEntity().getPic())
+                                            .writerNm(cmt.getUserEntity().getNm())
+                                            .createdAt(cmt.getCreatedAt().toString())
+                                            .build()
+                            ).collect(Collectors.toList());
+
             UserEntity userEntity = item.getUserEntity();
+            int isMoreCom = 0;
+
+            if(cmtlist.size() == 4){
+                cmtlist.remove(4);
+                isMoreCom = 1;
+            }
 
             return FeedSelVo.builder()
                     .ifeed(item.getIfeed().intValue())
@@ -104,6 +118,9 @@ public class FeedService {
                     .writerNm(userEntity.getNm())
                     .writerPic(userEntity.getPic())
                     .comments(cmtlist)
+                    .isMoreComment(isMoreCom)
+                    .pics(piclist)
+                    .isFav(isFav)
                     .build();
         }).collect(Collectors.toList());
     }
