@@ -11,6 +11,7 @@ public class FeedSelDto {
     @JsonIgnore
     @Schema(title = "페이지")
     private int page;
+    @JsonIgnore
     @Schema(title = "로그인한 유저pk")
     private int loginedIuser;
 

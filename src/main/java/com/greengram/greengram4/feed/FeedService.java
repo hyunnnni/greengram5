@@ -71,7 +71,13 @@ public class FeedService {
 
     @Transactional
     public List<FeedSelVo> getFeedAll(FeedSelDto dto, Pageable pageable) {
-        List<FeedEntity> feedEntityList = null;
+        List<FeedSelVo> list = repository.selFeedAll(
+                 authenticationFacade.getLoginUserPk()
+                , dto.getTargetIuser()
+                , pageable);
+        return list;
+    }
+       /* List<FeedEntity> feedEntityList = null;
         if (dto.getIsFavList() == 0 && dto.getTargetIuser() > 0) {
             UserEntity userEntity = new UserEntity();
             userEntity.setIuser((long) dto.getTargetIuser());
@@ -79,7 +85,7 @@ public class FeedService {
         }
 
         return feedEntityList == null ? new ArrayList<>()//펑션은 파라미터, 리턴이 있고 컨슈머는 파라미터만 있다 서큘라어쩌구 리턴만 있다
-                : feedEntityList.stream().map(item -> {
+                : feedEntityList.stream().map(item -> {//feedEntityList가 가진 값을 하나씩 넣어준다
                     FeedFavIds feedFavIds = new FeedFavIds();
                     feedFavIds.setIuser((long) authenticationFacade.getLoginUserPk());
                     feedFavIds.setIfeed(item.getIfeed());
@@ -123,7 +129,7 @@ public class FeedService {
                     .isFav(isFav)
                     .build();
         }).collect(Collectors.toList());
-    }
+    }람다식 이용한 짱짱*/
         /*System.out.println("!!!!!");
         list = mapper.feedSelAll(dto);
 

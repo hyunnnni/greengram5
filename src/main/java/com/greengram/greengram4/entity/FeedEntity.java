@@ -36,4 +36,8 @@ public class FeedEntity extends BaseEntity{
     //피드 저장을 할 때
     private List<FeedPicsEntity> feedPicsEntityList = new ArrayList<>();
 
+    @ToString.Exclude
+    @OneToMany(mappedBy = "feedEntity")
+    private List<FeedFavEntity> feedFavList = new ArrayList<>();
+
 }
