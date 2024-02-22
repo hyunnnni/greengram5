@@ -19,7 +19,7 @@ public class FeedEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ifeed;
 
-    @ManyToOne//디폴트 (fetch = FetchType.EAGER) 이건 한 개만 가져올 때 사용
+    @ManyToOne(fetch = FetchType.LAZY)//<- 지연로딩 manytoone의 디폴트는 (fetch = FetchType.EAGER) 이건 한 개만 가져올 때 사용(즉시로딩)
     @JoinColumn(name = "iuser", nullable = false)
     private UserEntity userEntity;
 
@@ -36,8 +36,8 @@ public class FeedEntity extends BaseEntity{
     //피드 저장을 할 때
     private List<FeedPicsEntity> feedPicsEntityList = new ArrayList<>();
 
-    @ToString.Exclude
+    /*@ToString.Exclude
     @OneToMany(mappedBy = "feedEntity")
-    private List<FeedFavEntity> feedFavList = new ArrayList<>();
+    private List<FeedFavEntity> feedFavList = new ArrayList<>();*/
 
 }

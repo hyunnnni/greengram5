@@ -71,11 +71,43 @@ public class FeedService {
 
     @Transactional
     public List<FeedSelVo> getFeedAll(FeedSelDto dto, Pageable pageable) {
-        List<FeedSelVo> list = repository.selFeedAll(
-                 authenticationFacade.getLoginUserPk()
-                , dto.getTargetIuser()
-                , pageable);
-        return list;
+
+        long loginIuser = authenticationFacade.getLoginUserPk();
+        dto.setLoginedIuser(loginIuser);
+
+        List<FeedEntity> list = repository.selFeedAll(dto, pageable);
+        List<FeedPicsEntity> picList = repository.selFeedPicsAll(list);
+        List<FeedFavEntity> favList = dto.getIsFavList() == 1 ? null : repository.selFeedFavAllByME(list, loginIuser);
+        List<FeedCommentSelVo> cmtList = comMapper.selFeedCommentEachTop4(list);
+
+        return list.stream().map(item -> {
+            List<FeedCommentSelVo> eachCommentList = cmtList.stream().filter(cmt ->
+                    cmt.getIfeed() == item.getIfeed()).collect(Collectors.toList());
+
+            int ismore = 0;
+            if( eachCommentList.size() == 4 ){
+                ismore = 1;
+                eachCommentList.remove(3);
+            }
+
+                return FeedSelVo.builder()
+                        .ifeed(item.getIfeed().intValue())
+                        .writerIuser(item.getUserEntity().getIuser().intValue())
+                        .writerNm(item.getUserEntity().getNm())
+                        .writerPic(item.getUserEntity().getPic())
+                        .createdAt(item.getCreatedAt().toString())
+                        .location(item.getLocation())
+                        .contents(item.getContents())
+                        .pics(picList.stream().filter(pic -> //filter는 Predicate 타입으로 파라미터로 넘어온 값을 체크해서 true일때만 추가되게 한다
+                                //리턴값이 boolean이다
+                                pic.getFeedEntity().getIfeed() == item.getIfeed()).map(pic ->//각 피드 당 모든 사진들에서 한 피드에 해당하는 사진 여러장으로 바뀐다
+                                pic.getPic()
+                        ).collect(Collectors.toList()))
+                        .isFav(dto.getIsFavList() == 1 ? 1 : favList.stream().anyMatch(fav -> fav.getFeedEntity().getIfeed() == item.getIfeed())? 1 : 0)
+                        .comments(eachCommentList)
+                        .isMoreComment(ismore)
+                        .build();}
+        ).collect(Collectors.toList());
     }
        /* List<FeedEntity> feedEntityList = null;
         if (dto.getIsFavList() == 0 && dto.getTargetIuser() > 0) {
@@ -84,7 +116,7 @@ public class FeedService {
             feedEntityList = repository.findAllByUserEntityOrderByIfeedDesc(userEntity, pageable);
         }
 
-        return feedEntityList == null ? new ArrayList<>()//펑션은 파라미터, 리턴이 있고 컨슈머는 파라미터만 있다 서큘라어쩌구 리턴만 있다
+        return feedEntityList == null ? new ArrayList<>()//function은 파라미터, 리턴이 있고 consumer는 파라미터만 있다 supplier 리턴만 있다
                 : feedEntityList.stream().map(item -> {//feedEntityList가 가진 값을 하나씩 넣어준다
                     FeedFavIds feedFavIds = new FeedFavIds();
                     feedFavIds.setIuser((long) authenticationFacade.getLoginUserPk());
