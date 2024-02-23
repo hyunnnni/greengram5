@@ -2,6 +2,8 @@ package com.greengram.greengram4.openApi;
 
 import com.greengram.greengram4.openApi.model.ApartmentTransactionDetailDto;
 import com.greengram.greengram4.openApi.model.ApartmentTransactionDetailVo;
+import com.greengram.greengram4.openApi.model.HospitalDto;
+import com.greengram.greengram4.openApi.model.HospitalVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,8 +21,13 @@ public class OpenApiController {
 
     private final OpenApiService service;
 
-    @GetMapping("apartment")
+    /*@GetMapping("/apartment")
     public List<ApartmentTransactionDetailVo> getApartment(ApartmentTransactionDetailDto dto) throws Exception {
         return service.getApartmentTransactionList(dto);
+    }*/
+
+    @GetMapping("/hospital")
+    public List<HospitalVo> getHospital(HospitalDto dto){
+        return service.getHospital(dto);
     }
 }

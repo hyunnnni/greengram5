@@ -1,8 +1,8 @@
 openapi:
-  apartment:
-    base-url: http://openapi.molit.go.kr
-    data-url: OpenAPI_ToolInstallPackge/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev
-    service-key: YkTAT8Fccc8Lq60Z3GROGXrqtxUErRqJRUP0T1tZe1LE2dRMkkOwDZr7Zi5zhNiDI%2B1T6VXBj9c2LRNKeJvVFQ%3D%3D
+  hospital:
+    base-url: https://openapi.gg.go.kr
+    data-url: TbChildnatnPrvntncltnmdnstM
+    service-key: 9a050a22944b4287afc298b853071295
 
 app:
   jwt:
