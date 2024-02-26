@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FeedCommentRepository extends JpaRepository<FeedCommentEntity, Long> {
-    @EntityGraph(attributePaths = {"userEntity"})
+    @EntityGraph(attributePaths = {"userEntity"})//처음에 조회 시 가져올 멤버필드 명(n+1해결
     List<FeedCommentEntity> findAllTop4ByFeedEntity(FeedEntity feedEntity);
     //limit = top 위에서 4개
 }
